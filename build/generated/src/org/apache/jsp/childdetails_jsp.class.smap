@@ -1,0 +1,18 @@
+SMAP
+childdetails_jsp.java
+JSP
+*S JSP
+*F
++ 0 childdetails.jsp
+childdetails.jsp
++ 1 minimenu.html
+menu/minimenu.html
++ 2 menu.html
+menu/menu.html
+*L
+5,116:50
+1#1,34:166
+120#0,5:199
+1#2,75:204
+124#0,174:278
+*E

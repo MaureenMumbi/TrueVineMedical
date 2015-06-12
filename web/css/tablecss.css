@@ -1,0 +1,96 @@
+/* 
+    Document   : tablecss
+    Created on : Nov 16, 2014, 8:01:07 PM
+    Author     : Manuel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+table.viewpdt{
+font-family: cambria;
+font-size:13.5px;
+border-width: 1px;
+border-color: activecaption;
+border-collapse: collapse;
+text-align: left;
+margin-left: 10px;
+border-style: dashed;
+margin: 10px;
+color: #666;
+font-size: 12px;
+-moz-border-radius: 3px;
+-moz-box-shadow: 0 1px 2px #d1d1d1;
+-webkit-border-radius: 3px;
+-webkit-box-shadow: 0 1px 2px #d1d1d1;
+background: #eaebec;
+border: #ccc 1px solid;
+border-radius: 3px;
+box-shadow: 0 1px 2px #d1d1d1;
+font-family: cambria;
+text-shadow: 1px 1px 0px #fff;
+
+}
+
+table.viewpdt th {
+background:#b5cfd2 url('cell-blue.jpg');
+border-width: 1px;
+padding: 4px;
+border-style: solid;
+border-color: #999999;
+padding: 5px 5px 5px 5px;
+border-bottom: 1px solid #e0e0e0; border-top: 1px solid #fafafa;
+background: #ededed;
+height:25px ;
+font-size: 13.5px;
+}
+table.viewpdt td {
+border-style: solid;
+border-color: #999999;      
+height:29px ;
+color: black;
+font-size: 18px;
+     }
+
+table.viewpdt tr.even td {
+background: #f6f6f6;
+}
+
+table.viewpdt tr {
+padding-left: 7px;
+text-align: left;
+    height:20px;
+}
+
+table.viewpdt tr:hover td {
+    background: #ccffcc;
+}
+table.viewpdt tr:hover th {
+    background: #aaff7f;
+}
+
+table.viewpdt tr td {
+padding: 4px;
+border-bottom: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; border-top: 1px solid #ffffff;
+background: #fafafa;
+}
+
+table.viewpdt input{
+  width:400px;
+    height: 20px;
+ font-size: 14px;
+ padding:1px ;   
+}
+
+table.viewpdt1 td {
+border-style: solid;
+border-color: #999999;      
+height:29px ;
+color: black;
+font-size: 18px;
+     }

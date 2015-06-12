@@ -1,0 +1,118 @@
+/* 
+    Document   : tabs
+    Created on : Aug 21, 2013, 4:17:26 PM
+    Author     : Maureen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.displayDiv
+{
+    width: 500px;
+    padding: 25px;
+    border: solid 1px #000;
+    border-radius: 15px;
+    display: none;
+    text-align: center;
+    font-size: 50px;
+    margin: auto;
+}
+.arrowContainer
+{   width:550px;
+    display: inline-block;
+    border-radius: 15px;
+    border: solid 1px #333;
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tab.png);
+    font-family: arial;
+    font-size: 12px;
+}
+.arrowContainer ol
+{   
+    -webkit-padding-start: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    padding: 0;
+    margin: 0;
+}
+.arrowContainer a
+{
+    position: relative;
+    padding: 0 48.5px 0 11px;
+    border: dotted 0px #000;  
+    text-decoration: none;
+    display: inline-block;
+    color: #333;
+}
+.firstItem a
+{
+    border-radius: 15px 0 0 15px;  
+    padding-left: 22px;    
+}
+.lastItem a
+{
+    border-radius: 0 15px 15px 0;   
+}
+.arrowContainer a:hover
+{
+    color: #000;
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabHover.png);
+}
+.arrowContainer a:hover .tabLeft
+{
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabLeftHover.png);
+}
+.arrowContainer a:hover .tabRight
+{
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabRightHover.png);
+}
+li.tabSelected a, li.tabSelected a:hover
+{
+    background-image: none;
+    background-color: #CFDDEE;
+    color: #000;
+}
+li.tabSelected .tabRight, li.tabSelected a:hover .tabRight
+{
+    background-image: none;
+}
+li.tabSelected .tabLeft, li.tabSelected a:hover .tabLeft
+{
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabLeftSelected.png);
+}
+.arrowContainer ol
+{
+    list-style: decimal;
+}
+.arrowContainer li
+{
+    display: inline;
+    line-height: 40px;
+}
+.firstItem .tabLeft, .lastItem .tabRight
+{
+    display: none;
+}
+.tabDivider
+{
+    width: 11px;
+    position: absolute;
+    white-space: nowrap;
+}
+.tabLeft
+{
+    left: -11px;
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabLeftNormal.png);
+}
+.tabRight
+{
+    right: 0px;
+    background-image: url(http://codetunnel.com/content/images/tabwizard/tabRightNormal.png);
+}
+
+

@@ -1,0 +1,31 @@
+SMAP
+viewChildDetails_jsp.java
+JSP
+*S JSP
+*F
++ 0 viewChildDetails.jsp
+viewChildDetails.jsp
++ 1 minimenu.html
+menu/minimenu.html
++ 2 menu.html
+menu/menu.html
+*L
+5,14:56
+19,2:14
+20,126:69
+1#1,34:195
+145#0,4:228
+1#2,75:232
+148#0,29:306
+177,6:336
+182,3:342
+185,6:345,3
+191,3:363
+194:366,3
+195,3:369
+198:372,11
+199:383,3
+200,7:386
+207,2:394
+208,30:396
+*E
