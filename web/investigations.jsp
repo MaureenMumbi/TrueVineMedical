@@ -122,13 +122,13 @@
                 <a class="navbar-brand" href="#">Truevine ChildHealth Centre System</a>
             </div>
             <!-- /.navbar-header -->
-<%@include file="menu/minimenu.html" %>
+<%@include file="menu/minimenu.jsp" %>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                    <!--menu-->
                    
-                    <%@include file="menu/menu.html" %>
+                    <%@include file="menu/menu.jsp" %>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

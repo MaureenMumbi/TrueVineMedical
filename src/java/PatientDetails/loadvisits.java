@@ -139,9 +139,8 @@ public class loadvisits extends HttpServlet {
  finaltable="<tr><td style='text-align: left;'> Patients Name :</td><td> <input type='hidden' id='reg' name='reg' value="+patientid+" >"+name+"</td></tr> " 
  +" <tbody> <tr><td  style='text-align: left;'>Age :</td><td><input type='hidden' id='name' name='name' value='"+name+"'><input type='hidden' id='age' name='age' value='"+age+"'>"+age+"</td> </tr>"
  +" <tr><td  style='text-align: left;'>Visit no.:</td><td><select onchange='loadspecificvisit(this);' style='height:32px;' name='Visitno' id='visitno'>"+visitoptions+"</select></td></tr>"
- +" <tr><td style='text-align: left;'>Date of Visit:</td><td><input readonly type='text' value='"+conn.rs.getString("revisitDate") +"'  name='date1' style='height:33px;width:240px;' id='date1' required/><button title='clear date field to blank' onclick=\"cleardate();\" class=\"btn btn-default\" type=\"button\">\n" +
-"             <i class=\"fa fa-refresh\" ></i>\n" +
-"</button></td></td></tr>"
+ +" <tr><td style='text-align: left;'>Date of Visit:</td><td><input readonly  type='text' value='"+conn.rs.getString("revisitDate") +"'  name='date1' style='height:33px;width:240px;' id='date1' required/><button title='clear date field to blank' onclick=\"cleardate();\" class=\"btn btn-default\" type=\"button\">" +
+"<i class=\"fa fa-refresh\" ></i></button></td></td></tr>"
  +"  <tr><th colspan='2' style='text-align: center;'>Finding Section</th></tr>"
  +" <tr><td style='text-align: left;'>Finding :</td><td>  <textarea name='finding' id='finding' required cols='40' rows='4'> "+conn.rs.getString("findings") +" </textarea></td>"
  +" </tr><tr><th colspan='2' style='text-align: center;'>Recomendations Section</th></tr>"
@@ -194,7 +193,8 @@ public class loadvisits extends HttpServlet {
    finaltable="<tr><td style='text-align: left;'> Patients Name :</td><td> <input type='hidden' id='reg' name='reg' value="+patientid+" >"+name+"</td></tr> " 
  +" <tbody> <tr><td  style='text-align: left;'>Age :</td><td><input type='hidden' id='name' name='name' value='"+name+"'><input type='hidden' id='age' name='age' value='"+age+"'>"+age+"</td> </tr>"
  +" <tr><td  style='text-align: left;'>Visit no.:</td><td><select style='height:32px;' onchange='loadspecificvisit(this);' name='Visitno' id='visitno'>"+visitoptions+"</select></td></tr>"
- +" <tr><td style='text-align: left;'>Date of Visit:</td><td><input type='text'  name='date1' style='height:25px;width:240px;' id='date1' required/></td></tr>"
+ +" <tr><td style='text-align: left;'>Date of Visit:</td><td><input type='text'  name='date1' style='height:33px;width:240px;' id='date1' required/><button title='clear date field to blank' onclick=\"cleardate();\" class=\"btn btn-default\" type=\"button\">" +
+"<i class=\"fa fa-refresh\" ></i></button></td></tr>"
  +"  <tr><th colspan='2' style='text-align: center;'>Finding Section</th></tr>"
  +" <tr><td style='text-align: left;'>Finding :</td><td>  <textarea name='finding' id='finding' required cols='40' rows='4'> </textarea></td>"
  +" </tr><tr><th colspan='2' style='text-align: center;'>Recomendations Section</th></tr>"

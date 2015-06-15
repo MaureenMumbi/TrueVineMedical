@@ -120,9 +120,9 @@
             </div>
             <!-- /.navbar-header -->
 
-          <%@include file="menu/minimenu.html" %>
+          <%@include file="menu/minimenu.jsp" %>
             
-            <%@include file="menu/leftmenu.jsp" %>
+            <%@include file="menu/menu.jsp" %>
           
             <!-- /.navbar-static-side -->
         </nav>

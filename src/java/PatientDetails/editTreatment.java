@@ -74,13 +74,12 @@ public class editTreatment extends HttpServlet {
                 
                 table+="<tr><td style=\"text-align: left;\">Patients Name:</td><td> <input type=\"hidden\" name=\"reg\" value=\""+patientid+"\"><b>"+pname+"</b></td></tr>  ";
                 table+="  <tr><td  style=\"text-align: left;\">Age:</td><td><input type=\"hidden\" name=\"name\" value=\""+pname+"\"><input type=\"hidden\" name=\"age\" value=\""+age+"\">"+age+"</td></tr>";
-                table+="  <tr><td style=\"text-align: left;\">Date of Entry:</td><td><input type=\"text\" readonly name=\"date1\" value=\""+conn.rs.getString("treatmentdate")+"\" style=\"height:30px;width:240px;\" id=\"date1\" required/></td></tr>" +
-"  <tr><td style=\"text-align: left;\">Treatment:</td><td>  <textarea name=\"treatment\" id=\"treatment\" required cols=\"40\" rows=\"4\"> "+conn.rs.getString("treatment")+"</textarea></td></tr>\n" +
+                table+="  <tr><td style=\"text-align: left;\">Date of Entry:</td><td><input type=\"text\" required readonly name=\"date1\" value=\""+conn.rs.getString("treatmentdate")+"\" style=\"height:30px;width:240px;\" id=\"date1\" required/></td></tr>" +
+"  <tr><td style=\"text-align: left;\">Treatment:</td><td>  <textarea  required name=\"treatment\" id=\"treatment\" required cols=\"40\" rows=\"4\"> "+conn.rs.getString("treatment")+"</textarea></td></tr>\n" +
 "  <tr><td style=\"text-align: left;\">Prescription :</td><td><textarea name=\"prescription\" id=\"prescription\" required cols=\"40\" rows=\"2\"> "+conn.rs.getString("prescription")+"</textarea></td></tr>";
                 table+="<tr><th colspan=\"2\" style=\"text-align: center;\">Refferal Section</th></tr>";
                 table+="<tr><td style=\"text-align: left;\">Select An Option</td><td> <select name=\"refferal\" title=\"To select various options, hold the control button and select all the options that apply. To unselect an option, Hold the control button and press the selected option\" id=\"refferal\" required style=\"height:120px;width:240px;\" multiple='multiple'>"+refs+"</select></td></tr>";
-                table+="<tr><td colspan=\"2\"><input type=\"submit\"  style=\"height: 30px; width:120px; background: orange;\"value=\"Save and Print\" /></td>  </tr>";
-                table+="";
+                table+="<tr> <td><input type='hidden' name='isprint1' id='isprint1' value='yes'><input type=\"checkbox\" onclick='printst();' checked name=\"isprint\" id=\"isprint\" value=\"yes\">Print</td> <td colspan=\"2\" style=\"margin-left: 20px;\"><input type=\"submit\" id=\"submit\"  style=\"height: 35px; width:120px; background: orange;\"value=\"SAVE AND PRINT\" /></td>  </tr>";
             
                 
                 

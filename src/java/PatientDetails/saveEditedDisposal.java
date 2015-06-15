@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author MANUEL
  */
-public class savedisposal extends HttpServlet {
+public class saveEditedDisposal extends HttpServlet {
 
   HttpSession session=null;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -142,7 +142,7 @@ public class savedisposal extends HttpServlet {
           Logger.getLogger(savedisposal.class.getName()).log(Level.SEVERE, null, ex);
       }
           
-            response.sendRedirect("Disposal.jsp?name="+name+"&regNo="+Patientid);  
+            response.sendRedirect("editDisposal.jsp?name="+name+"&regNo="+Patientid);  
         
     }
 

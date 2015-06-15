@@ -253,33 +253,19 @@ current_date=month+"/"+day+"/"+year;
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="index.html">Followup and reviews</a>
+                <a class="navbar-brand" href="maindashboard.jsp">Followup and reviews</a>
             </div>
             <!-- /.navbar-header -->
+<%@include file="menu/minimenu.jsp" %>
 
-            <ul class="nav navbar-top-links navbar-right">
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            
-            <%@include file="menu/leftmenu.jsp" %>
-          
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                   <!--menu-->
+                   
+                    <%@include file="menu/menu.jsp" %>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
             <!-- /.navbar-static-side -->
         </nav>
 

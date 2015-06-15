@@ -104,6 +104,18 @@
         <servlet-name>editUser</servlet-name>
         <servlet-class>PatientDetails.editUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadDisposal</servlet-name>
+        <servlet-class>PatientDetails.loadDisposal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveEditedDisposal</servlet-name>
+        <servlet-class>PatientDetails.saveEditedDisposal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>monthlyattendance</servlet-name>
+        <servlet-class>PatientDetails.monthlyattendance</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>updatedbpword</servlet-name>
         <url-pattern>/updatedbpword</url-pattern>
@@ -208,7 +220,19 @@
         <servlet-name>editUser</servlet-name>
         <url-pattern>/editUser</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadDisposal</servlet-name>
+        <url-pattern>/loadDisposal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveEditedDisposal</servlet-name>
+        <url-pattern>/saveEditedDisposal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>monthlyattendance</servlet-name>
+        <url-pattern>/monthlyattendance</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>30000</session-timeout>
+        <session-timeout>-1</session-timeout>
     </session-config>
 </web-app>

@@ -6,7 +6,6 @@ package PatientDetails;
 
 import DBCONNECT.dbConnect;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -77,7 +76,7 @@ public class login extends HttpServlet {
         pass = request.getParameter("password");
 
 
-System.out.println(uname+""+pass);
+
 
 
 
@@ -87,7 +86,7 @@ System.out.println(uname+""+pass);
    String stringToEncrypt=pass;
         String pw=myEncryptor.encrypt(stringToEncrypt);
         String decrypted=myEncryptor.decrypt(pw);
-
+System.out.println(uname+"_"+pw);
 
         //connection to database class instance
 
@@ -242,7 +241,9 @@ Date mydate;
         }
 
 System.out.println(nextPage);
-
+if(conn.connect!=null){conn.connect.close();}
+if(conn.rs!=null){conn.rs.close();}
+if(conn.state!=null){conn.state.close();}
 
         session.setAttribute("error_login", error_login);
         response.sendRedirect(nextPage);

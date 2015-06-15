@@ -83,6 +83,23 @@
                         });
                     
                 });
+                
+                
+                
+                function loadDisp(name,patientid){
+                
+                       $.ajax({
+    url:"loadDisposal?name="+name+"&patientid="+patientid,
+    type:'post',
+    dataType:'html',
+    success:function(data){
+//        alert(data);
+        document.getElementById("disposalform").innerHTML=data;
+      $(".date").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
+        chooseaction();    
+    }
+});  
+                                                   }    
             </script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -133,14 +150,8 @@
             //alert('should work');
             document.getElementById("causediv").style.display='block';;
             document.getElementById("towndiv").style.display='none';
-            //document.getElementById("deathdate").required="true";
-            //document.getElementById("deathcause").required="true";
-            //document.getElementById("country").removeAttribute("required");
-            //document.getElementById("town").removeAttribute("required");
-             $("#country").val('');
+           $("#country").val('');
             $("#town").val('');
-            
-           
             
         }
         
@@ -148,13 +159,12 @@
             //alert('should work');
             document.getElementById("causediv").style.display='none';
             document.getElementById("towndiv").style.display='block';
-         $("#deathdate").val('');
+            $("#deathdate").val('');
             $("#deathcause").val('');
-            
-            //document.getElementById("town").required="true";
-            //document.getElementById("country").required="true";
-            //document.getElementById("deathdate").removeAttribute("required");
-            //document.getElementById("deathcause").removeAttribute("required");
+            //document.getElementById("deathdate").required="true";
+            //document.getElementById("deathcause").required="true";
+            //document.getElementById("country").removeAttribute("required");
+            //document.getElementById("town").removeAttribute("required");
             
         }
         else {
@@ -162,8 +172,16 @@
             
               document.getElementById("causediv").style.display='none';
             document.getElementById("towndiv").style.display='none'; 
+              $("#country").val('');
+              $("#town").val('');
+              
+               //document.getElementById("town").required="true";
+            //document.getElementById("country").required="true";
+            //document.getElementById("deathdate").removeAttribute("required");
+            //document.getElementById("deathcause").removeAttribute("required");
+              
             
-        }
+             }
                
                
            }
@@ -203,7 +221,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Disposal </h1>
+                    <h1 class="page-header">Edit Disposal </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -223,7 +241,7 @@
                    
 		
                     
-               <form action="savedisposal" method="post">
+               <form action="saveEditedDisposal" id="disposalform" method="post">
                                
 <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">
 
@@ -237,10 +255,10 @@
              <option value="Died">Died</option>
              <option value="Lost to follow up">Lost to follow up</option>
              <option value="Moved to other towns">Moved to other town</option>
-             </select>
+             
      </td></tr></table>
                    
-             <div id="causediv">
+                   <div id="causediv">
                   <!--   death cause                       -->
              <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">     
  <tr ><th style="width:200px;"><span id="datelabel">Date</span></th><td><input type="text" class='date' name="deathdate" id="deathdate" readonly style="width:240px; height:30px;"/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
@@ -252,14 +270,22 @@
                   
                   </div>
                    
-<div id="towndiv">
- <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">                   
-<tr><th style="width:200px;"><span id="townlabel">Town</span></th><td> <input style='height:33px;width:240px;'  list="townsdl" name="town" id="town" /> <datalist id="townsdl"><option value="nairobi"> <option value="nyahururu"></datalist></td></tr>   
-<tr><th><span id="countrylabel">Country</span></th><td> <input style='height:33px;width:240px;'  list="countydl" name="country" id="country" /> <datalist id="countydl"><option value="Uganda"/> <option value="Tanzania"/></datalist> </td></tr>   
-</table></div>
-<table class="viewpdt" style="margin-left: 400px;">
-<tr><td colspan="2"><input type="submit"  style="height: 30px; width:120px; background: orange;"value="Save" /></td>  </tr>
-</table><inpu type="submit" value="Save" >
+                   <div id="towndiv">
+                   <!----   town and country                       -------->
+ <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">
+                   
+     <tr><th style="width:200px;"><span id="townlabel">Town</span></th><td> <input  list="townsdl" name="town" id="town" /> <datalist id="townsdl"><option value="nairobi"> <option value="nyahururu"></datalist></td></tr>   
+                <tr><th><span id="countrylabel">Country</span></th><td> <input list="countydl" name="country" id="country" /> <datalist id="countydl"><option value="Uganda"/> <option value="Tanzania"/></datalist> </td></tr>   
+                   
+                   
+   
+
+  </table></div>
+                   <table class="viewpdt" style="margin-left: 400px;">
+     <tr><td colspan="2"><input type="submit"  style="height: 30px; width:120px; background: orange;"value="Save" /></td>  </tr>
+</table>
+                   
+                   <inpu type="submit" value="Save" >
 </form>
 									
 							
@@ -293,7 +319,9 @@
      <!--Metis Menu Plugin JavaScript--> 
     <script src="sbfiles/js/plugins/metisMenu/metisMenu.min.js"></script>
 <script>
-      chooseaction();
+    loadDisp('<%=request.getParameter("name")%>','<%=request.getParameter("regNo")%>');
+    
+    
     
 </script>
 

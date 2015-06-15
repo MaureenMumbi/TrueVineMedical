@@ -6,6 +6,7 @@ package PatientDetails;
 
 import DBCONNECT.dbConnect;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -42,12 +43,14 @@ public class PrintForm extends HttpServlet {
 
     
     HttpSession session=null;
-   
+   String isprint="";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
-          
+          isprint="";
+            
+            PrinterClass print=new PrinterClass();
             
             session=request.getSession();
             
@@ -62,6 +65,9 @@ public class PrintForm extends HttpServlet {
             String userid="Not Known";
             name=request.getParameter("name");
             age=request.getParameter("age");
+            isprint=request.getParameter("isprint1");
+            
+            System.out.println("__"+request.getParameter("isprint1"));
             fdate=request.getParameter("date1");
             prescription=request.getParameter("prescription");
             
@@ -137,8 +143,15 @@ public class PrintForm extends HttpServlet {
             
             
             }
+//creation of document and printing begins here
+            
+            
+            //this part can be skipped
+            
             
            // XWPFDocument document = new XWPFDocument();
+            if(isprint.equalsIgnoreCase("yes")){
+            
             XWPFDocument document = new XWPFDocument();
             
             //XWPFTestDataSamples.openSampleDocument("TestDocument.docx");
@@ -204,19 +217,41 @@ public class PrintForm extends HttpServlet {
 
             }
 
+           String pt = getServletContext().getRealPath("db.jsp");                  
+         String mydrive = pt.substring(0, 1);
+         
+     String formpath=mydrive+":\\TrueVineMedical\\TreatmentForms"; 
+       
+     new File(formpath).mkdirs();
+       String finalpath=  formpath+"\\"+name.replace(" ","_") + date + ".docx";                 
+        FileOutputStream out = new FileOutputStream(finalpath);
+        document.write(out);
+        out.close();
+        print.printform(finalpath);
+          //now call the print
+        
+        
+        
+//            ByteArrayOutputStream outByteStream = new ByteArrayOutputStream();
+//            document.write(outByteStream);
+//            byte[] outArray = outByteStream.toByteArray();
+//            response.setContentType("application/ms-excel");
+//            response.setContentLength(outArray.length);
+//            response.setHeader("Expires:", "0"); // eliminates browser caching
+//            response.setHeader("Content-Disposition", "attachment; filename="+name.replace(" ","_") + date + ".docx");
+//            OutputStream out1Stream = response.getOutputStream();
+//            out1Stream.write(outArray);
+//            out1Stream.flush();
+//            
+            }
+            else {
+            
+                
                
-            
-            ByteArrayOutputStream outByteStream = new ByteArrayOutputStream();
-            document.write(outByteStream);
-            byte[] outArray = outByteStream.toByteArray();
-            response.setContentType("application/ms-excel");
-            response.setContentLength(outArray.length);
-            response.setHeader("Expires:", "0"); // eliminates browser caching
-            response.setHeader("Content-Disposition", "attachment; filename="+name.replace(" ","_") + date + ".docx");
-            OutputStream out1Stream = response.getOutputStream();
-            out1Stream.write(outArray);
-            out1Stream.flush();
-            
+            }
+            session.setAttribute("treatmentmsg", "Treatment details saved successfully");            
+             String nextpage="treatment.jsp?name="+name+"&age="+age+"&regNo="+regno;
+            response.sendRedirect(nextpage);
             
         } catch (SQLException ex) {
             Logger.getLogger(PrintForm.class.getName()).log(Level.SEVERE, null, ex);
