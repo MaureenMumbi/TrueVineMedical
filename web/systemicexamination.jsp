@@ -468,7 +468,7 @@ if(session.getAttribute("PatientID")!=null){
             <h2 class="StepTitle">Respiratory Examination </h2>
        
 		<fieldset>
-                    <h2> Fill all fields</h2>
+                    <!--<h2> Fill all fields</h2>-->
 		<div id="message"></div>
                 <div class="formRow" >
                      <div class="panel-body">

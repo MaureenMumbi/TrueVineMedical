@@ -253,9 +253,9 @@ else{
                         </a></li>
                     <li><a href="#step-3" style="width: 252px;">
                 <label class="stepNumber">3</label>
-                <span class="stepDesc">
+                <span class="stepDesc" style="font-size:19px;">
                    Step 3<br />
-                   <small>Present Complaints & Duration</small>
+                   <small style="font-size:11px;">Present Complaints & Duration</small>
                 </span>                   
                         </a></li>
                     <li><a href="#step-4">

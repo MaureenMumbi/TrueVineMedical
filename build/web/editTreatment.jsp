@@ -100,7 +100,13 @@
 //        alert(data);
         document.getElementById("treatmenttable").innerHTML=data;
       //$("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
-          
+       
+    
+       document.getElementById("submit").value="SAVE AND PRINT";
+        document.getElementById("isprint1").value="yes";  
+        document.getElementById("isprint").checked=true;  
+    
+  
     }
 });  
          
@@ -108,6 +114,24 @@
      }
  
  
+ 
+ 
+  function printst(){
+        
+        
+        if(document.getElementById("isprint").checked===true){
+        document.getElementById("submit").value="SAVE AND PRINT";
+        document.getElementById("isprint1").value="yes";
+                       }
+                       else 
+                       {
+             document.getElementById("submit").value="SAVE";
+                document.getElementById("isprint1").value="no";      
+                           
+                           
+                       }
+    //alert(document.getElementById("isprint").value);
+    }
  
                 
             </script>
@@ -169,13 +193,13 @@
                 <a class="navbar-brand" href="#">Truevine ChildHealth Centre System</a>
             </div>
             <!-- /.navbar-header -->
-<%@include file="menu/minimenu.html" %>
+<%@include file="menu/minimenu.jsp" %>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                    <!--menu-->
                    
-                    <%@include file="menu/menu.html" %>
+                    <%@include file="menu/menu.jsp" %>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

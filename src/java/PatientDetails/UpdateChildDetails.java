@@ -34,12 +34,22 @@ public class UpdateChildDetails extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     String FName="";
+   
+          HttpSession session;
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        dbConnect conn = new dbConnect();
+           session = request.getSession();
+             String FName="";
           String MName="";
           String SName="";
           String regno="";
           String dob="";
           String age="";
+          String sex="";
           String MothersFName="";
           String MothersMName="";
           String MothersSName="";
@@ -54,14 +64,6 @@ public class UpdateChildDetails extends HttpServlet {
           String Fathersworkplace="";
           String Insurance="";
           String PatientID="";
-          HttpSession session;
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        dbConnect conn = new dbConnect();
-           session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
          
@@ -88,7 +90,9 @@ public class UpdateChildDetails extends HttpServlet {
           if(!request.getParameter("dob").equals("") && request.getParameter("dob")!=null){
           dob=request.getParameter("dob");
           }
-          
+          if(!request.getParameter("sex").equals("") && request.getParameter("sex")!=null){
+          sex=request.getParameter("sex");
+          }
           if(!request.getParameter("MothersFName").equals("") && request.getParameter("MothersFName")!=null){
           MothersFName=request.getParameter("MothersFName");
           }
@@ -141,23 +145,22 @@ public class UpdateChildDetails extends HttpServlet {
            
            session.setAttribute("PatientID", PatientID);
          if(regno!=null && !regno.equals("")) {
-         String insert ="update basicdetails set FName=?,SName=?, LName=?,RegNo=?,DOB=?,Age=?, userid=? where PatientID=?";
+         String insert ="update basicdetails set FName=?,SName=?, LName=?,RegNo=?,DOB=?,Age=?,Sex=?, userid=? where PatientID=?";
          
          
          
          conn.ps1=conn.connect.prepareStatement(insert);
     
-    //patientID,urinalysis,stoolmicroscopy,stoolHPylori,
-//malaria,RBS,HTotalWBCCount,HDifferential,HHb,HPeripheral,HInclusions,
-  
+   
  conn.ps1.setString(1, FName); 
  conn.ps1.setString(2, MName); 
  conn.ps1.setString(3, SName); 
  conn.ps1.setString(4 ,regno); 
  conn.ps1.setString(5,dob); 
  conn.ps1.setString(6,age); 
- conn.ps1.setString(7,userid); 
- conn.ps1.setString(8, PatientID); 
+ conn.ps1.setString(7,sex); 
+ conn.ps1.setString(8,userid); 
+ conn.ps1.setString(9, PatientID); 
  conn.ps1.executeUpdate();
 
          

@@ -168,7 +168,7 @@
                         </a></li>
                     
   		</ul>
-  			<div id="step-1"  style="height:400px; width:1110px;">	
+  			<div id="step-1"  style="height:500px; width:1110px;">	
             <h2 class="StepTitle">Child Details</h2>
           
 		<fieldset>
@@ -196,7 +196,17 @@
                             
                         </tr>
                         <tr>
-                            <td>Current Age</td><td> <input type="text" class="form-control" name="age"  style="height:30px;" id="age" disabled></td>
+                            <td>Current Age</td><td> <input type="text" class="form-control" name="age"  style="height:30px;" id="age" readonly></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Sex</td>
+                            <td> <select class="form-control" name="sex"  id="sex">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </td>
                             
                         </tr>
                     </table>
@@ -206,17 +216,17 @@
 								</fieldset>
 							
         </div>
-  			  			<div id="step-2" style="height:400px; width:1110px;">
+  			  			<div id="step-2" style="height:500px; width:1110px;">
             <h2 class="StepTitle">Mothers Details</h2>
              <h2> Enter mother's  details</h2>
           <table  style="width:700px"  class="viewpdt" >
               <tr></tr>
                         <tr>
-                            <td>First Name</td><td><input type="text"  class="form-control" name="MothersFName"   style="height:30px;" placeholder="Mothers First Name..." ></td>
+                            <td>First Name</td><td><input type="text"  class="form-control" name="MothersFName"   style="height:30px;" placeholder="Mother's First Name..." ></td>
                               </tr>
-                            <tr> <td>Middle Name</td><td><input type="text" class="form-control" name="MothersMName"   style="height:30px;" placeholder="Mothers Middle Name..." ></td>
+                            <tr> <td>Middle Name</td><td><input type="text" class="form-control" name="MothersMName"   style="height:30px;" placeholder="Mother's Middle Name..." ></td>
                               </tr>
-                           <tr>  <td>Surname Name</td><td><input type="text"  class="form-control" name="MothersSName"   style="height:30px;" placeholder="Fathers Surname..." ></td>
+                           <tr>  <td>Surname Name</td><td><input type="text"  class="form-control" name="MothersSName"   style="height:30px;" placeholder="Mother's Surname..." ></td>
                         </tr>
                         <tr>
                             <td>Phone No</td><td> <input type="text" name="mothersphoneno"  class="form-control"  style="height:30px;" Placeholder="e.g 0720000000"></td>
@@ -233,7 +243,7 @@
                     </table>
          
         </div>
-  			  			<div id="step-3" style="height:400px; width:1110px;">
+  			  			<div id="step-3" style="height:500px; width:1110px;">
             <h2 class="StepTitle">Fathers Details</h2>
               <h2> Enter fathers's  details</h2>
            <table style="width:700px" class="viewpdt" >

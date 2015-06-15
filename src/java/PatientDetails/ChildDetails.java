@@ -8,7 +8,9 @@ import DBCONNECT.dbConnect;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,12 +36,23 @@ public class ChildDetails extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     String FName="";
+               HttpSession session;
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        dbConnect conn = new dbConnect();
+           session = request.getSession();
+        try {
+            
+            String FName="";
           String MName="";
           String SName="";
           String regno="";
           String dob="";
           String age="";
+          String sex="";
           String MothersFName="";
           String MothersMName="";
           String MothersSName="";
@@ -54,15 +67,7 @@ public class ChildDetails extends HttpServlet {
           String Fathersworkplace="";
           String Insurance="";
           String PatientID="";
-          HttpSession session;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        dbConnect conn = new dbConnect();
-           session = request.getSession();
-        try {
             /* TODO output your page here. You may use following sample code. */
          
           if(!request.getParameter("FName").equals("") && request.getParameter("FName")!=null){
@@ -87,6 +92,10 @@ public class ChildDetails extends HttpServlet {
           
           if(!request.getParameter("dob").equals("") && request.getParameter("dob")!=null){
           dob=request.getParameter("dob");
+          }
+          
+          if(!request.getParameter("sex").equals("") && request.getParameter("sex")!=null){
+          sex=request.getParameter("sex");
           }
           
           if(!request.getParameter("MothersFName").equals("") && request.getParameter("MothersFName")!=null){
@@ -137,8 +146,13 @@ public class ChildDetails extends HttpServlet {
           }
            PatientID = uniqueid(regno);
            session.setAttribute("PatientID", PatientID);
+           
+           
+           Date date= new Date();
+                SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd");
+                String formattedDate = formatter.format(date);
          if(regno!=null && !regno.equals("")) {
-         String insert ="insert into basicdetails set PatientID=?, FName=?,SName=?, LName=?,RegNo=?,DOB=?,Age=?, userid=?";
+         String insert ="insert into basicdetails set PatientID=?, FName=?,SName=?, LName=?,RegNo=?,DOB=?,Age=?, Sex=?,userid=?,dateRegistered=?";
          
          
          
@@ -153,7 +167,9 @@ public class ChildDetails extends HttpServlet {
  conn.ps1.setString(5 ,regno); 
  conn.ps1.setString(6,dob); 
  conn.ps1.setString(7,age); 
- conn.ps1.setString(8,userid); 
+ conn.ps1.setString(8,sex); 
+ conn.ps1.setString(9,userid); 
+ conn.ps1.setString(10,formattedDate); 
  
  conn.ps1.executeUpdate();
 

@@ -85,7 +85,24 @@
      $("#date1").val('');
      
  }
-                
+     
+    
+    function printst(){
+        
+        
+        if(document.getElementById("isprint").checked===true){
+        document.getElementById("submit").value="SAVE AND PRINT";
+        document.getElementById("isprint1").value="yes";
+                       }
+                       else 
+                       {
+             document.getElementById("submit").value="SAVE";
+                document.getElementById("isprint1").value="no";      
+                           
+                           
+                       }
+    //alert(document.getElementById("isprint").value);
+    }
             </script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -135,13 +152,13 @@
                 <a class="navbar-brand" href="#">Truevine ChildHealth Centre System</a>
             </div>
             <!-- /.navbar-header -->
-<%@include file="menu/minimenu.html" %>
+<%@include file="menu/minimenu.jsp" %>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                    <!--menu-->
                    
-                    <%@include file="menu/menu.html" %>
+                    <%@include file="menu/menu.jsp" %>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
@@ -193,12 +210,12 @@
   
   %>
   <tr>
-      <td style="text-align: left;">Date Today:</td><td><input type="text" readonly name="date1" value="<%=mdate%>" style="height:30px;width:240px;" id="date1" required/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
+      <td style="text-align: left;">Date Today:</td><td><input and required type="text" readonly name="date1" value="<%=mdate%>" style="height:30px;width:240px;" id="date1" required/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
              <i class="fa fa-refresh" ></i>
 </button></td>     
   </tr>
   <tr>
-      <td style="text-align: left;">Treatment :</td><td>  <textarea name="treatment" id="treatment" required cols="40" rows="4"> </textarea></td>
+      <td style="text-align: left;">Treatment :</td><td>  <textarea required name="treatment" id="treatment" required cols="40" rows="4"> </textarea></td>
     
  </tr>
  
@@ -216,7 +233,7 @@
              <option value="Neurology">Neurology</option>
      
      </td></tr>
-    <tr><td colspan="2"><input type="submit"  style="height: 30px; width:120px; background: orange;"value="Save and Print" /></td>  </tr>
+    <tr> <td><input type='hidden' name='isprint1' id='isprint1' value='yes'><input type="checkbox" onclick='printst();' checked name="isprint" id="isprint" value="yes">Print</td> <td colspan="2" style="margin-left: 20px;"><input type="submit" id="submit"  style="height: 35px; width:120px; background: orange;"value="SAVE AND PRINT" /></td>  </tr>
 
   </tbody>
   </table>
@@ -256,5 +273,11 @@
 
 
 </body>
-
+<script>
+    
+       document.getElementById("submit").value="SAVE AND PRINT";
+        document.getElementById("isprint1").value="yes";  
+        document.getElementById("isprint").checked=true;  
+    
+    </script>
 </html>

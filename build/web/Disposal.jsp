@@ -19,7 +19,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/truevine.png"/>
 
-    <title>Truevine Medical System</title>
+    <title>Disposal</title>
  <script src="js/jquery-1.7.2.js"></script>
     <script src="sbfiles/js/sb-admin-2.js"></script>
 <!--<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>-->
@@ -133,8 +133,14 @@
             //alert('should work');
             document.getElementById("causediv").style.display='block';;
             document.getElementById("towndiv").style.display='none';
-           // $("causediv").show();
-          //  $("towndiv").hide();
+            //document.getElementById("deathdate").required="true";
+            //document.getElementById("deathcause").required="true";
+            //document.getElementById("country").removeAttribute("required");
+            //document.getElementById("town").removeAttribute("required");
+             $("#country").val('');
+            $("#town").val('');
+            
+           
             
         }
         
@@ -142,8 +148,13 @@
             //alert('should work');
             document.getElementById("causediv").style.display='none';
             document.getElementById("towndiv").style.display='block';
-           // $("causediv").show();
-          //  $("towndiv").hide();
+         $("#deathdate").val('');
+            $("#deathcause").val('');
+            
+            //document.getElementById("town").required="true";
+            //document.getElementById("country").required="true";
+            //document.getElementById("deathdate").removeAttribute("required");
+            //document.getElementById("deathcause").removeAttribute("required");
             
         }
         else {
@@ -171,13 +182,20 @@
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 
-                <a class="navbar-brand" href="index.html">Truevine ChildHealth Centre System</a>
+                <a class="navbar-brand" href="maindashboard.jsp">Truevine ChildHealth Centre System</a>
             </div>
             <!-- /.navbar-header -->
 
-           <%@include file="menu/minimenu.html" %>
-            
-            <%@include file="menu/leftmenu.jsp" %>
+          <%@include file="menu/minimenu.jsp" %>
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                   <!--menu-->
+                   
+                    <%@include file="menu/menu.jsp" %>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
           
             <!-- /.navbar-static-side -->
         </nav>
@@ -219,10 +237,10 @@
              <option value="Died">Died</option>
              <option value="Lost to follow up">Lost to follow up</option>
              <option value="Moved to other towns">Moved to other town</option>
-             
+             </select>
      </td></tr></table>
                    
-                   <div id="causediv">
+             <div id="causediv">
                   <!--   death cause                       -->
              <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">     
  <tr ><th style="width:200px;"><span id="datelabel">Date</span></th><td><input type="text" class='date' name="deathdate" id="deathdate" readonly style="width:240px; height:30px;"/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
@@ -234,22 +252,14 @@
                   
                   </div>
                    
-                   <div id="towndiv">
-                   <!----   town and country                       -------->
- <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">
-                   
-     <tr><th style="width:200px;"><span id="townlabel">Town</span></th><td> <input  list="townsdl" name="town" id="town" /> <datalist id="townsdl"><option value="nairobi"> <option value="nyahururu"></datalist></td></tr>   
-                <tr><th><span id="countrylabel">Country</span></th><td> <input list="countydl" name="country" id="country" /> <datalist id="countydl"><option value="Uganda"/> <option value="Tanzania"/></datalist> </td></tr>   
-                   
-                   
-   
-
-  </table></div>
-                   <table class="viewpdt" style="margin-left: 400px;">
-     <tr><td colspan="2"><input type="submit"  style="height: 30px; width:120px; background: orange;"value="Save" /></td>  </tr>
-</table>
-                   
-                   <inpu type="submit" value="Save" >
+<div id="towndiv">
+ <table style="margin-left: 90px; width:1000px;" id="" class="viewpdt">                   
+<tr><th style="width:200px;"><span id="townlabel">Town</span></th><td> <input style='height:33px;width:240px;'  list="townsdl" name="town" id="town" /> <datalist id="townsdl"><option value="nairobi"> <option value="nyahururu"></datalist></td></tr>   
+<tr><th><span id="countrylabel">Country</span></th><td> <input style='height:33px;width:240px;'  list="countydl" name="country" id="country" /> <datalist id="countydl"><option value="Uganda"/> <option value="Tanzania"/></datalist> </td></tr>   
+</table></div>
+<table class="viewpdt" style="margin-left: 400px;">
+<tr><td colspan="2"><input type="submit"  style="height: 30px; width:120px; background: orange;"value="Save" /></td>  </tr>
+</table><inpu type="submit" value="Save" >
 </form>
 									
 							

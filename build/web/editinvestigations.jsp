@@ -139,7 +139,7 @@
             </ul>
             <!-- /.navbar-top-links -->
             
-            <%@include file="menu/leftmenu.jsp" %>
+            <%@include file="menu/menu.jsp" %>
           
             <!-- /.navbar-static-side -->
         </nav>

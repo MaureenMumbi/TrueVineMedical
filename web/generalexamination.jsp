@@ -110,9 +110,21 @@
   function addtotextarea(id){
 //      
   var problem=id+" \n";
-      document.getElementById("problem").value+=problem;  
-      alert( document.getElementById("problem").value);
+  var textarea=document.getElementById("problem").value;
+  if(textarea.contains(problem)){
+   alert("Medical Problem already added"); 
+  }
+     else{
+        
+          if(id==="Others"){
+           alert("Type any other problems not provided")   
+          }
+          else{
+                document.getElementById("problem").value+=problem; 
+          }
+       //alert( document.getElementById("problem").value);
 
+     }
 
 //<button onclick="document.getElementById('up7913').disabled=true;document.getElementById('down7913').disabled=false;" type="submit" class="positive" name="up7913" id="up7913">First</button>
 //
@@ -201,25 +213,25 @@ else{
 
     <div id="wrapper">
 
-        <!-- Navigation -->
+       <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 
                 <a class="navbar-brand" href="index.html">Truevine ChildHealth Centre System</a>
             </div>
             <!-- /.navbar-header -->
-   <%@include file="menu/minimenu.jsp" %>
-            <!-- /.navbar-top-links -->
+
+          <%@include file="menu/minimenu.jsp" %>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                                    <%@include file="menu/menu.html" %>
-
+                    <%@include file="menu/menu.jsp" %>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
 
         <div id="page-wrapper">
             <div class="row">
@@ -287,7 +299,7 @@ if(session.getAttribute("PatientID")!=null){
   			<div id="step-1"  style="height:520px; width:1500px;">	
             <h2 class="StepTitle">Child Birth History</h2>
 		<fieldset>
-                    <h2> Child's Birth History</h2>
+<!--                    <h2> Child's Birth History</h2>-->
 		<div id="message"></div>
                 <div class="formRow" >
                      <div class="panel-body">
@@ -375,10 +387,10 @@ if(session.getAttribute("PatientID")!=null){
                             <td>Has the child has any longstanding medical problems?</td>
                           </tr>
                                                      <tr><td>
-                                    <input  value="Epilepsy" class="btnSmall btn submit center" style="background-color: #cccccc; margin-bottom: 10px;" onclick="addtotextarea('Epilepsy');this.disabled=true">
-				    <input value="Asthma" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;"  onclick="addtotextarea('Asthma');this.disabled=true">
-				    <input  value="Diabetes" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Diabetes');this.disabled=true">
-				    <input value="Cerebral Palsy" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Cerebral Palsy');this.disabled=true">
+                                    <input  value="Epilepsy" class="btnSmall btn submit center" style="background-color: #cccccc; margin-bottom: 10px;" onclick="addtotextarea('Epilepsy');">
+				    <input value="Asthma" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;"  onclick="addtotextarea('Asthma');">
+				    <input  value="Diabetes" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Diabetes');">
+				    <input value="Cerebral Palsy" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Cerebral Palsy');">
 				    <input  value="Sickle Cell Disease" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Sickle Cell Disease')">
 				    <input value="Others" class="btnSmall btn submit center" style="background-color:#cccccc;margin-bottom: 10px;" onclick="addtotextarea('Others');">
 				   
@@ -390,7 +402,7 @@ if(session.getAttribute("PatientID")!=null){
             <table>
                 <tr><td>Has the child ever been hospitalized?</td>
                     <td>
-                        <select name="hospitalized" id="hospitalized" class="form-control" onchange="showhospitalized()"  style="height:30px;" >
+                        <select name="hospitalized" id="hospitalized" class="form-control" onchange="showhospitalized();getdate();"  style="height:30px;" >
                                     <option value=""></option>  
                                     <option value="Yes">Yes</option>  
                                     <option value="No">No</option>  
@@ -407,9 +419,11 @@ if(session.getAttribute("PatientID")!=null){
         </div>
   			  			<div id="step-3" style="height:400px; width:1200px;">
             <h2 class="StepTitle">Present complaints and duration</h2>
-            <h3>What are the present complaints and duration? </h3>
-            <table style="padding-left: 300px;" class="viewpdt1">
-                      
+            <table>
+                  <tr><td>What are the present complaints and duration? </td></tr>   
+            </table>
+            <table style="padding-left: 300px;" >
+                 
                <tr >
                    <td style="padding-left: 50px;">Fever</td>
                <td><input type="checkbox"  value="Fever" class="form-control" onclick="showfield(1);" id="complaints1" name="complaints1"  style="padding-bottom: 10px; margin-bottom: 10px;  margin-left: 25px; width: 50px;" ></td>

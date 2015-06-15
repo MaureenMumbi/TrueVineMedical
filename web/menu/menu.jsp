@@ -40,6 +40,9 @@
                         <li>
                             <a href="financialtransaction.jsp"><i class="fa fa-dollar fa-fw"></i> Financial Transactions</a>
                         </li>
+                           <li>
+                            <a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
                        
                     </ul>  
                 
