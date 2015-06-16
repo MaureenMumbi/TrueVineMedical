@@ -55,6 +55,7 @@
 <link href="js/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet"/>
 <link href="css/tablecss.css" rel="stylesheet"/>
  <script src="sbfiles/js/bootstrap.min.js"></script>
+ <script src="js/childdetailsvalidation.js"></script>
 
      <!--Metis Menu Plugin JavaScript--> 
     
@@ -66,6 +67,13 @@
                                 changeMonth: true,
                                 changeYear: true,
                                 yearRange:'1995:2015'
+                               
+                        });
+        $( ".datepicker" ).datepicker({
+                                dateFormat: "dd/mm/yy",
+                                changeMonth: true,
+                                changeYear: true
+                               
                                
                         });
                     
@@ -102,7 +110,23 @@
             return false;
         }
 
-    }
+    
+
+}
+      function numbers(evt){
+var charCode=(evt.which) ? evt.which : event.keyCode
+if(charCode > 31 && (charCode < 48 || charCode>57)){
+return false;
+}
+
+else{
+ 
+
+
+ 
+return true;
+}
+}
   </script>  
 </head>
 
@@ -188,7 +212,7 @@
                            <tr>  <td>Surname Name</td><td><input type="text" class="form-control"  style="height:30px;" name="SName" placeholder="Childs Surname..." ></td>
                         </tr>
                         <tr>
-                            <td>Reg No</td><td> <input type="text" class="form-control" style="height:30px;" name="regno" Placeholder="e.g 1/2014"></td>
+                            <td>Reg No</td><td> <input type="text" class="form-control" style="height:30px;" name="regno" id="regno" Placeholder="e.g 1/2014"></td>
                             
                         </tr>
                         <tr>
@@ -207,6 +231,10 @@
                                     <option value="Female">Female</option>
                                 </select>
                             </td>
+                            
+                        </tr>
+                         <tr>
+                            <td>Date Registered</td><td> <input type="text"  name="dateRegistered"  style="height:30px;" id="dateRegistered" class="datepicker" Placeholder="dd/mm/yyyy"></td>
                             
                         </tr>
                     </table>
@@ -229,7 +257,7 @@
                            <tr>  <td>Surname Name</td><td><input type="text"  class="form-control" name="MothersSName"   style="height:30px;" placeholder="Mother's Surname..." ></td>
                         </tr>
                         <tr>
-                            <td>Phone No</td><td> <input type="text" name="mothersphoneno"  class="form-control"  style="height:30px;" Placeholder="e.g 0720000000"></td>
+                            <td>Phone No</td><td> <input type="text" onkeypress="return numbers(event)" name="mothersphoneno" id="mothersphoneno"  class="form-control"  style="height:30px;" Placeholder="e.g 0720000000"></td>
                             
                         </tr>
                         <tr>
@@ -256,11 +284,11 @@
                            <tr>  <td>Surname Name</td><td><input type="text"  class="form-control" name="FathersSName"  style="height:30px;" placeholder="Father's Surname..." ></td>
                         </tr>
                         <tr>
-                            <td>Phone No</td><td> <input type="text"  class="form-control" name="Fathersphoneno"  style="height:30px;"  Placeholder="e.g 0720000000"></td>
+                            <td>Phone No</td><td> <input type="text" onkeypress="return numbers(event)" class="form-control" name="Fathersphoneno" id="Fathersphoneno"  style="height:30px;"  Placeholder="e.g 0720000000"></td>
                             
                         </tr>
                         <tr>
-                            <td>Occupation</td><td> <input type="text" class="form-control" name="Fathersoccupation"  style="height:30px;" Placeholder="job"><td>
+                            <td>Occupation</td><td> <input type="text" class="form-control" name="Fathersoccupation"  style="height:30px;" Placeholder="Occupation.."><td>
                             
                         </tr>
                         <tr>

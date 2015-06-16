@@ -84,7 +84,7 @@ public class saveNextPatient extends HttpServlet {
              else {
                 session.setAttribute("patientadded", "<b><font color=\"red\">Error, Patient not added successfully</font></b>");
            }
-        response.sendRedirect("viewChildDetails.jsp");
+        response.sendRedirect("ViewNextPatient.jsp");
         } finally {            
             out.close();
         }

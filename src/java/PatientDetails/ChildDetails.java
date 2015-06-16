@@ -53,6 +53,7 @@ public class ChildDetails extends HttpServlet {
           String dob="";
           String age="";
           String sex="";
+          String dateRegistered="";
           String MothersFName="";
           String MothersMName="";
           String MothersSName="";
@@ -96,6 +97,9 @@ public class ChildDetails extends HttpServlet {
           
           if(!request.getParameter("sex").equals("") && request.getParameter("sex")!=null){
           sex=request.getParameter("sex");
+          }
+          if(!request.getParameter("dateRegistered").equals("") && request.getParameter("dateRegistered")!=null){
+          dateRegistered=request.getParameter("dateRegistered");
           }
           
           if(!request.getParameter("MothersFName").equals("") && request.getParameter("MothersFName")!=null){
@@ -148,9 +152,9 @@ public class ChildDetails extends HttpServlet {
            session.setAttribute("PatientID", PatientID);
            
            
-           Date date= new Date();
-                SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd");
-                String formattedDate = formatter.format(date);
+//           Date date= new Date();
+//                SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd");
+//                String formattedDate = formatter.format(date);
          if(regno!=null && !regno.equals("")) {
          String insert ="insert into basicdetails set PatientID=?, FName=?,SName=?, LName=?,RegNo=?,DOB=?,Age=?, Sex=?,userid=?,dateRegistered=?";
          
@@ -169,7 +173,7 @@ public class ChildDetails extends HttpServlet {
  conn.ps1.setString(7,age); 
  conn.ps1.setString(8,sex); 
  conn.ps1.setString(9,userid); 
- conn.ps1.setString(10,formattedDate); 
+ conn.ps1.setString(10,dateRegistered); 
  
  conn.ps1.executeUpdate();
 

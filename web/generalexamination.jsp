@@ -204,6 +204,20 @@ else{
 
 
 
+      function numbers(evt){
+var charCode=(evt.which) ? evt.which : event.keyCode
+if(charCode > 31 && (charCode < 48 || charCode>57)){
+return false;
+}
+
+else{
+ 
+
+
+ 
+return true;
+}
+}
 </script>
          
 
@@ -335,13 +349,13 @@ if(session.getAttribute("PatientID")!=null){
                             <td> 
                                  
                             
-                                <input type="text" class="form-control"  style="height:30px;" name="birthweight">
+                                <input type="text" class="form-control"  onkeypress="return numbers(event)" style="height:30px;" name="birthweight">
                                
                             </td>
                             <td> <span class="input-group-addon" style="width: 20px; ">Kgs</span></td>
                         </tr>
                         <tr>
-                            <td>Birth Number</td><td> <input type="text"  name="birthno"  class="form-control" style="height:30px;" id="birthno" ></td>
+                            <td>Birth Number</td><td> <input type="text"  name="birthno" onkeypress="return numbers(event)"  class="form-control" style="height:30px;" id="birthno" ></td>
                             
                         </tr>
                         <tr>
