@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
       <link rel="shortcut icon" href="images/truevine.png"/>
-    <title>Truevine Medical System</title>
+    <title>edit Investigations</title>
  <script src="js/jquery-1.7.2.js"></script>
     <script src="sbfiles/js/sb-admin-2.js"></script>
 <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
@@ -118,29 +118,17 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
+                       <!-- /.navbar-header -->
+<%@include file="menu/minimenu.jsp" %>
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            
-            <%@include file="menu/menu.jsp" %>
-          
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                   <!--menu-->
+                   
+                    <%@include file="menu/menu.jsp" %>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>       
             <!-- /.navbar-static-side -->
         </nav>
 
@@ -158,7 +146,7 @@
 <tr><td>
 <!-- Smart Wizard -->
         <!--<h2>Example: Basic Wizard</h2>-->
-                          <form method="post" action="saveinvestigations" class="form contact-form">
+                          <form method="post" action="updateinvestigations" class="form contact-form">
   		<div id="wizard" class="swMain" style="width:1200px;">
 
   <ul> 
@@ -196,19 +184,19 @@
                    
   		</ul>
                      
-  			<div id="step-1"  style="height:400px; width:100%;">	
+  			<div id="step-1"  style="height:500px; width:100%;">	
             
 
                           </div>
   			  			
   		
                     
-                    <div id="step-2" style="height:400px; width:100%;">
+                    <div id="step-2" style="height:500px; width:100%;">
                     </div>
                     
                     
         
-                    <div id="step-3" style="height:550px; width:100%">
+                    <div id="step-3" style="height:500px; width:100%">
                   </div>
                                 
                     
@@ -253,19 +241,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
     	// Smart Wizard
+   
         
-        $.ajax({
-    url:"loadinvestigations",
-    type:'post',
-    dataType:'json',
-    success:function(data){
-       // alert(data["step1"]);
-        document.getElementById("step-1").innerHTML=data["step1"];
-        document.getElementById("step-2").innerHTML=data["step2"];
-        document.getElementById("step-3").innerHTML=data["step3"];
-        decideincdesc();
-    }
-});  
+       
             
         
   		$('#wizard').smartWizard();
@@ -276,7 +254,26 @@
       }
 		});
                 
-                
+            function loadinvs(name,patientid,date){
+        
+        $.ajax({
+    url:"loadinvestigations?name="+name+"&patientid="+patientid+"&date="+date,
+    type:'post',
+    dataType:'json',
+    success:function(data){
+       // alert(data["step1"]);
+        document.getElementById("step-1").innerHTML=data["step1"];
+        document.getElementById("step-2").innerHTML=data["step2"];
+        document.getElementById("step-3").innerHTML=data["step3"];
+        decideincdesc();
+    }
+    });  
+    
+    }//end of function    
+    
+    
+     loadinvs('<%=request.getParameter("name")%>','<%=request.getParameter("regNo")%>','<%=request.getParameter("date")%>');
+    
                 
 </script>
 

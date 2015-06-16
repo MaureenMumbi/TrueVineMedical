@@ -223,7 +223,7 @@ public class PrintForm extends HttpServlet {
      String formpath=mydrive+":\\TrueVineMedical\\TreatmentForms"; 
        
      new File(formpath).mkdirs();
-       String finalpath=  formpath+"\\"+name.replace(" ","_") + date + ".docx";                 
+       String finalpath=  formpath+"\\"+name.replace(" ","_") + date.replace("-","_") + ".rtf";                 
         FileOutputStream out = new FileOutputStream(finalpath);
         document.write(out);
         out.close();

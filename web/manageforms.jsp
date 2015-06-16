@@ -67,6 +67,12 @@
         <link href="media/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
         <link href="media/themes/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" media="all" />
 
+        
+          <script type="text/javascript" src="js/noty/jquery.noty.js"></script>
+<script type="text/javascript" src="js/noty/layouts/top.js"></script>
+<script type="text/javascript" src="js/noty/layouts/center.js"></script>
+<script type="text/javascript" src="js/noty/themes/default.js"></script>
+        
 		<script type="text/javascript">
 			$(document).ready( function () {
 				$('#example').dataTable().makeEditable({
@@ -139,6 +145,22 @@ function openwindow(){
 
 <body>
 
+    <%if (session.getAttribute("invmsgupd") != null) {%>
+                                    <script type="text/javascript"> 
+                    
+                        var n = noty({text: '<%=session.getAttribute("invmsgupd")%>',
+                            layout: 'center',
+                            type: 'Success',
+ 
+                             timeout: 4800});
+                    
+                                    </script> <%
+                        session.removeAttribute("invmsgupd");
+                    }
+
+                    %>
+    
+    
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -174,16 +196,16 @@ function openwindow(){
                            <th> LAST NAME </th>
                            <th> REGNO </th>
                            <th> AGE </th>
-                           <th> TREATMENT </th>
+                           <th> TREATMENT DATE</th>
                            <th> TREATMENT/PRESCRIPTION </th>
-                           <th> SECTION </th>
+                           <th> SECTION TO EDIT</th>
                             </tr>
 		                
 		            </thead>
 		            <tbody>
-                          <% String getTreatment = "select * from treatment";
+                          <% String getTreatment = "select investigations.date as invdate,treatment.PatientID as PatientID , treatment ,Prescription,treatmentdate from treatment left join investigations on investigations.patientID=treatment.PatientID and treatment.treatmentdate=investigations.date ";
                                      conn.rs2 = conn.state1.executeQuery(getTreatment);
-                                     if(conn.rs2.next()){
+                                     while(conn.rs2.next()){
 
                             
                          String query = "select * from basicdetails where PatientID='"+conn.rs2.getString("PatientID")+"'";
@@ -208,17 +230,21 @@ function openwindow(){
                                 
                               
                                     <td>
-                                        <select id="pages" name="forms" multiple>
+                                        <select id="pages" name="forms" style='height:130px;width:100%;' multiple>
                                             
                                             
                                             <option value="ViewBasicDetails.jsp">Child Basic Details</option>
                                             <option value="UpdateGeneralExamination.jsp"> General Examinations</option>
                                             <option value="UpdateSystemicExamination.jsp">Systemic Examination</option>
-                                            <option value="treatment.jsp?name=<%= conn.rs.getString("FName")%> <%= conn.rs.getString("SName")%> <%= conn.rs.getString("LName")%>&age=<%= conn.rs.getString("Age")%>&reg=<%= conn.rs.getString("RegNo")%>">Treatment</option>
-                                            <option value="investigations.jsp?regNo=${data.REGNO}">Investigation</option>
+                                            <option value="editTreatment.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%= conn.rs.getString("Age")%>&reg=<%= conn.rs.getString("RegNo")%>&date=<%=conn.rs2.getString("treatmentdate")%>">Treatment</option>
+                                            <option value="visits.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%=conn.rs.getString("age")%>&regNo=<%=conn.rs.getString("PatientID")%>">Follow ups and revisits</option>
+                                         
+                                            <option <% if(conn.rs2.getString("invdate")==null){ %> title='patient has not been investigated yet' disabled <%}%> value="editinvestigations.jsp?regNo=<%= conn.rs2.getString("patientID")%>&date=<%= conn.rs2.getString("invdate")%> &name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>">Investigation</option>
                                             
-                                            
-                                            
+                                             <option value="visits.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%=conn.rs.getString("age")%>&regNo=<%=conn.rs.getString("PatientID")%>">Follow ups and revisits</option>
+             
+                                               <option value="editDisposal.jsp?name=<%=conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%=conn.rs.getString("age")%>&regNo=<%=conn.rs.getString("PatientID")%>">Disposal</option>
+             
                                             
 <!--                                            <option value=""></option>
                                             <option value="storeParameters?Regno=<%= conn.rs.getString("RegNo")%>&page=childdetails&PatientID=<%= conn.rs.getString("PatientID")%>">Child Basic Details</option>
@@ -265,6 +291,9 @@ function openwindow(){
     <!-- Custom Theme JavaScript -->
     <script src="sbfiles/js/sb-admin-2.js"></script>
 
+    
+    
+    
 </body>
 
 </html>

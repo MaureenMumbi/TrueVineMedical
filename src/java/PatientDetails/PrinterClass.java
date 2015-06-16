@@ -6,9 +6,11 @@
 package PatientDetails;
 
 import java.awt.print.PrinterJob;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import javax.print.Doc;
 import javax.print.DocFlavor;
@@ -43,7 +45,7 @@ boolean retval=true;
         
         
         try {
-            PrintService mPrinter = null;
+          
             Boolean bFoundPrinter = false;
          
        
@@ -69,7 +71,7 @@ boolean retval=true;
       
       
       
-     // InputStream is = new ByteArrayInputStream(texttoprint.getBytes());
+      //InputStream is = new ByteArrayInputStream(path.getBytes());
       FileInputStream is = new FileInputStream( new File(curreceipt));
       
       flavor =  DocFlavor.INPUT_STREAM.AUTOSENSE  ;   
@@ -90,8 +92,8 @@ boolean retval=true;
                 String sPrinterName = service.getName();
                 
                 
-               // System.out.println("current printers __"+sPrinterName);
-                 mPrinter = service;
+               System.out.println("current printers __"+sPrinterName);
+                 //mPrinter = service;
                     bFoundPrinter = true;
                      
                 DocPrintJob job = service.createPrintJob();

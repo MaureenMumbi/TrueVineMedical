@@ -187,7 +187,7 @@
                    
   		</ul>
                      
-                    <div id="step-1"  style="height:400px; width:100%;">	
+                    <div id="step-1"  style="height:500px; width:100%;">	
                         <h2 class="StepTitle">Step 1</h2>
 
                         <fieldset>
@@ -237,7 +237,7 @@
   			  			
   		
                     
-                    <div id="step-2" style="height:400px; width:100%;">
+                    <div id="step-2" style="height:500px; width:100%;">
                         <h2 class="StepTitle">Step 2</h2>
 
                         <table style="margin-left: 150px; width:1000px;" id="invtable2" class="viewpdt">
@@ -245,7 +245,7 @@
                             <tr><td style="text-align:left ;">(b)Differential </td><td> <input type='text'  name='differential' style=' width: 130px;height:35px;' id='differential'   ></td></tr>
                             <tr><td style="text-align:left ;">(c) HB</td><td> <input type='text'name='hb' style=' width: 130px;height:35px;' id='hb' /> </td><td><i>g/dL</i></td></tr>
                             <tr><td style="text-align:left ;">(d)Peripheral Film </td><td> <input type='text'  name='peripheralfilm' style='width: 130px;height:35px;' id='periPheralFilm'   /></td></tr>
-                            <tr><td style="text-align:left ;">(e)Inclusions</td><td><select  onchange="decideincdesc();"  style='width: 130px;height:35px;' name='inclusions' id="inclusions"  >
+                            <tr><td style="text-align:left ;">(e)Inclusions</td><td><select  onblur="decideincdesc();"  style='width: 130px;height:35px;' name='inclusions' id="inclusions"  >
                                         <option value=''>select option</option>
                                         <option value='positive'>Positive</option><option value='negative'>Negative</option>
                                     </select></td></tr>

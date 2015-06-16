@@ -85,7 +85,7 @@ String mri=request.getParameter("mri");
     //have a session containing the patientid
     
     String invinsert="insert into investigations (patientID,urinalysis,stoolmicroscopy,stoolHPylori,malaria,RBS,HTotalWBCCount,HDifferential,HHb,HPeripheral,HInclusions,inclusiondesc,LFTs,UreaNelectrolytes,ThyroidProfile,CXR,OtherXray,ultrasound,ctscanbrain,ctscanother,MRI,userid,date)"
-            + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     
 conn.ps1=conn.connect.prepareStatement(invinsert);

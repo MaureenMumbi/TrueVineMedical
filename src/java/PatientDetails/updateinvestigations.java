@@ -84,7 +84,7 @@ String mri=request.getParameter("mri");
 
     //have a session containing the patientid
     
-    String invinsert="update investigations set urinalysis=?,stoolmicroscopy=?,stoolHPylori=?,malaria=?,RBS=?,HTotalWBCCount=?,HDifferential=?,HHb,HPeripheral=?,HInclusions=?,inclusiondesc=?,LFTs=?,UreaNelectrolytes=?,ThyroidProfile=?,CXR,OtherXray=?,ultrasound=?,ctscanbrain=?,ctscanother=?,MRI=?,date=? where date='"+date+"' and patientID='"+patientid+"'"
+    String invinsert="update investigations set urinalysis=?,stoolmicroscopy=?,stoolHPylori=?,malaria=?,RBS=?,HTotalWBCCount=?,HDifferential=?,HHb=?,HPeripheral=?,HInclusions=?,inclusiondesc=?,LFTs=?,UreaNelectrolytes=?,ThyroidProfile=?,CXR=?,OtherXray=?,ultrasound=?,ctscanbrain=?,ctscanother=?,MRI=?,date=? where date='"+date+"' and patientID='"+patientid+"'"
             + " ";
     
     
@@ -124,8 +124,29 @@ conn.ps1=conn.connect.prepareStatement(invinsert);
     
   //take this to the update page  
    
-    session.setAttribute("datasaved","investigations data  for patient Id "+patientid+" has been updated succesfully");
-     response.sendRedirect("manageforms.jsp");
+    session.setAttribute("invmsgupd","<h4> <font color=\"green\"><b>Investigations</b> data  for patient Id "+patientid+" has been updated succesfully </font> </h4>");
+        String index="";
+      
+      String  form[]= new String[]{};
+            form=(String[]) session.getAttribute("form");
+
+     int indexes=0;
+       
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("manageforms.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);
     try {
         
     } finally {            

@@ -42,12 +42,17 @@ public class loadinvestigations extends HttpServlet {
             dbConnect conn= new dbConnect();
             String date="";
             
-            String patientid="1/2014/2014/11/4767";
-            date="30/04/2015";
-            
+            String patientid="";
+            date="";
+            String name="";
             if(request.getParameter("patientid")!=null){
             
             patientid=request.getParameter("patientid");
+            }
+            
+             if(request.getParameter("name")!=null){
+            
+            name=request.getParameter("name");
             }
             
              if(request.getParameter("date")!=null){
@@ -75,10 +80,8 @@ public class loadinvestigations extends HttpServlet {
 
 "" +
 "                                            <table style=\"margin-left: 150px; width:1000px;\" id=\"invtable1\" class=\"viewpdt\">\n" +
-"                                                <td colspan=\"2\"></td>\n" +
-"\n" +
-"\n" +
-"                                                <td><input type=\"hidden\" required  value=\"Search..\"  readonly style=\" cursor:pointer;margin-left: 40px; text-transform:uppercase ; height: 18px; width:100px;text-align:center ; color:white ;background:coral; border-style:ridge ;\" onclick=\"getAtoFDetails();\"/> </td>\n" +
+"                                                <td colspan=\"1\">Name:</td>\n" +
+"                                                <td><b>"+name+"</b><input type=\"hidden\" required  value=\"Search..\"  readonly style=\" cursor:pointer;margin-left: 40px; text-transform:uppercase ; height: 18px; width:100px;text-align:center ; color:white ;background:coral; border-style:ridge ;\" onclick=\"getAtoFDetails();\"/> </td>\n" +
 "                                                <input type=\"hidden\" name=\"patientid\" value=\""+conn.rs.getString("patientID")+"\"/>" +
 "                                                <tr>\n" +
 "                                                    <td style=\"text-align:left ;\">Date: </td><td><input type='text' value=\""+conn.rs.getString("date")+"\" readonly name='invdate' class='form-control date' style=' width: 160px;height:35px;'  ><td></td>\n" +
@@ -145,7 +148,7 @@ step3="<h2 class=\"StepTitle\">Step 3 </h2>\n" +
             obj.put("step2", step2);
             obj.put("step3", step3);
             
-            System.out.println("__"+step1);
+           // System.out.println("__"+step1);
             
             
             try {
