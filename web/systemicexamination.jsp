@@ -61,11 +61,12 @@
 <!--       <script src="js/DICHelp.js"></script>-->
 	 <script>	
                 $(function() {
-        $( ".datepickerDOB" ).datepicker({
-                                dateFormat: "dd/mm/yy",
+ 
+        $( ".datepicker" ).datepicker({
+                                dateFormat: "yy/mm/dd",
                                 changeMonth: true,
-                                changeYear: true,
-                                yearRange:'1950:2000'
+                                changeYear: true
+                               
                                
                         });
                     
@@ -475,7 +476,10 @@ if(session.getAttribute("PatientID")!=null){
                             <div class="row">
                                 <div class="col-lg-6">
                     <table style="padding-left: 300px;" class="viewpdt">
-                        
+                         <tr>
+                            <td>Date </td><td> <input type="text"  name="dateRegistered"  style="height:30px;" id="dateRegistered" class="datepicker" Placeholder="dd/mm/yyyy"></td>
+                            
+                        </tr>
                         <tr>
                             <td>Air Entry Left Lung Fields</td><td>
                                 <select name="airentryleft" class="form-control" style="padding-bottom: 10px; margin-bottom: 10px;  margin-left: 25px; width: 350px;" >

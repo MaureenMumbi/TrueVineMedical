@@ -239,7 +239,7 @@ return false;
      var isValid2 = true;  
  var mothersphoneno=$('#mothersphoneno').val();
   
-  if( mothersphoneno.length >= 10){
+  if( mothersphoneno.length > 11){
    
          
       $("#mothersphoneno").css("border-color","#ff0000");
@@ -259,7 +259,7 @@ return false;
  
     var Fathersphoneno=$('#Fathersphoneno').val();
   
-  if( Fathersphoneno.length >= 10){
+  if( Fathersphoneno.length > 11){
    
          
       $("#Fathersphoneno").css("border-color","#ff0000");

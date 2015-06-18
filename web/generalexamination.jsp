@@ -59,19 +59,29 @@
 <script src="js/jquery-ui-1.10.3.custom.js"></script>
 
 
-	 <script>	
-                function getdate() {
-                   
-                
-        $( "#datepicker" ).datepicker({
-                                dateFormat: "dd/mm/yy",
+	 <script>
+             function getdate(){
+                          $( "#datepicker" ).datepicker({
+                                dateFormat: "yy/mm/dd",
                                 changeMonth: true,
-                                changeYear: true,
-                                yearRange:'1990:2014'
+                                changeYear: true
+                               
+                               
+                        });
+                    }
+                $(function() {
+                    
+               
+   
+        $( ".datepicker" ).datepicker({
+                                dateFormat: "yy/mm/dd",
+                                changeMonth: true,
+                                changeYear: true
+                               
                                
                         });
                     
-                }
+                });
             </script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -320,7 +330,10 @@ if(session.getAttribute("PatientID")!=null){
                             <div class="row">
                                 <div class="col-lg-6">
                     <table style="width: 1100px;" class="viewpdt">
-                        
+                        <tr>
+                            <td>Date</td><td> <input type="text"  name="dateRegistered"  style="height:30px;" id="dateRegistered" class="datepicker" Placeholder="dd/mm/yyyy"></td>
+                            
+                        </tr> 
                         <tr>
                             <td>Place of Birth</td><td>
                                 <select name="birthplace" id="birthplace" onchange="showhospital();" class="form-control"  style="height:30px;" >

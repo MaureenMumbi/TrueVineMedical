@@ -192,6 +192,7 @@
                             }
 
                         %> 
+                            <form method="post" action="storeParameters">
               <table id="example" class="display">
 		            <thead>
 		            <tr>
@@ -225,8 +226,8 @@
                                     <td><%= conn.rs.getString("RegNo")%></td>
                                     <td><%= conn.rs.getString("Age")%></td>
                                     <td>
-                                  <select  onchange="opennewpage(this);"  id="pages">
-                                      
+                                  <!--<select  onchange="opennewpage(this);"  id="pages" multiple>-->
+                                    <select id="pages" name="forms" style='height:130px;width:100%;' multiple>    
                                             <option value="">Select Page</option>
                                              <% if(session.getAttribute("level")!=null){
                     if(session.getAttribute("level").toString().equals("Receptionist")){%>
@@ -242,6 +243,7 @@
              <option value="Disposal.jsp?name=<%=child%>&regNo=<%=conn.rs.getString("PatientID")%>">Disposal</option>
               <%}}%>
                                         </select></td>
+                                         <td> <input type="submit" value="VIEW" name="submit"> </td>
                                     
                             </tr>
                                       <%
@@ -250,7 +252,7 @@
                                 
 		            </tbody>
 		        </table>
- 
+                            </form>
 
     </div>
     <!-- /#wrapper -->
