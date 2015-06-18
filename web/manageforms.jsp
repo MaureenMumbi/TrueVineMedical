@@ -148,19 +148,51 @@ function openwindow(){
     <%if (session.getAttribute("invmsgupd") != null) {%>
                                     <script type="text/javascript"> 
                     
-                        var n = noty({text: '<%=session.getAttribute("invmsgupd")%>',
-                            layout: 'center',
-                            type: 'Success',
- 
-                             timeout: 4800});
+                        var n = noty({text: '<%=session.getAttribute("invmsgupd")%> Click to close.',
+                            layout: 'top',
+                            type: 'Success', 
+                             timeout: 1200});
                     
                                     </script> <%
                         session.removeAttribute("invmsgupd");
                     }
 
                     %>
+ <!--------------------------------------------------------->   
+    <%if (session.getAttribute("disposaleditmsg") != null) {%>
+                                    <script type="text/javascript"> 
+                    
+                        var n = noty({text: '<%=session.getAttribute("disposaleditmsg")%> Click to close.',
+                            layout: 'top',
+                            type: 'Success', 
+                             timeout: 1300});
+                    
+                                    </script> <%
+                        session.removeAttribute("disposaleditmsg");
+                    }
+
+                    %>
     
+  <!--------------------------------------------------------------->  
+    <%if (session.getAttribute("updtreatmentmsg") != null) {%>
+                                    <script type="text/javascript"> 
+                    
+                        var n = noty({text: '<%=session.getAttribute("updtreatmentmsg")%>. Click to close.',
+                            layout: 'top',
+                            type: 'Success', 
+                             timeout: 1400});
+                    
+                                    </script> <%
+                        session.removeAttribute("updtreatmentmsg");
+                    }
+
+                    %>
     
+  <!--------------------------------------------------------------->  
+  
+  
+  
+  
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -187,6 +219,8 @@ function openwindow(){
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <% int a=0;%>
+            
             <form method="post" action="storeParameters">
               <table id="example" class="display">
 		            <thead>
@@ -207,7 +241,7 @@ function openwindow(){
                                      conn.rs2 = conn.state1.executeQuery(getTreatment);
                                      while(conn.rs2.next()){
 
-                            
+                            a++;
                          String query = "select * from basicdetails where PatientID='"+conn.rs2.getString("PatientID")+"'";
                                      conn.rs = conn.state.executeQuery(query); 
 
@@ -230,13 +264,13 @@ function openwindow(){
                                 
                               
                                     <td>
-                                        <select id="pages" name="forms" style='height:130px;width:100%;' multiple>
+                                        <select id="pages<%=a%>" name="forms" style='height:160px;width:100%;' multiple>
                                             
                                             
                                             <option value="ViewBasicDetails.jsp">Child Basic Details</option>
                                             <option value="UpdateGeneralExamination.jsp"> General Examinations</option>
                                             <option value="UpdateSystemicExamination.jsp">Systemic Examination</option>
-                                            <option value="editTreatment.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%= conn.rs.getString("Age")%>&reg=<%= conn.rs.getString("RegNo")%>&date=<%=conn.rs2.getString("treatmentdate")%>">Treatment</option>
+                                            <option value="editTreatment.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%= conn.rs.getString("Age")%>&regNo=<%= conn.rs2.getString("PatientID")%>&date=<%=conn.rs2.getString("treatmentdate")%>">Treatment</option>
                                             <option value="visits.jsp?name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>&age=<%=conn.rs.getString("age")%>&regNo=<%=conn.rs.getString("PatientID")%>">Follow ups and revisits</option>
                                          
                                             <option <% if(conn.rs2.getString("invdate")==null){ %> title='patient has not been investigated yet' disabled <%}%> value="editinvestigations.jsp?regNo=<%= conn.rs2.getString("patientID")%>&date=<%= conn.rs2.getString("invdate")%> &name=<%= conn.rs.getString("FName").replace("'","")%> <%= conn.rs.getString("SName").replace("'","")%> <%= conn.rs.getString("LName").replace("'","")%>">Investigation</option>

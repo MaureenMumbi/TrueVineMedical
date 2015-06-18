@@ -25,6 +25,7 @@ public class updateinvestigations extends HttpServlet {
    
     
     HttpSession session=null;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -36,7 +37,11 @@ public class updateinvestigations extends HttpServlet {
     
     session=request.getSession();
     
+    String name="";
     
+   if(request.getParameter("name")!=null){
+   name=request.getParameter("name");
+                                         }
     String patientid=request.getParameter("patientid");
     String urinalysis=request.getParameter("urinalysis");
     String date=request.getParameter("invdate");
@@ -124,7 +129,7 @@ conn.ps1=conn.connect.prepareStatement(invinsert);
     
   //take this to the update page  
    
-    session.setAttribute("invmsgupd","<h4> <font color=\"green\"><b>Investigations</b> data  for patient Id "+patientid+" has been updated succesfully </font> </h4>");
+    session.setAttribute("invmsgupd","<h4> <font color=\"green\"><b>Investigations</b> data  for patient "+name+" has been updated succesfully </font> </h4>");
         String index="";
       
       String  form[]= new String[]{};

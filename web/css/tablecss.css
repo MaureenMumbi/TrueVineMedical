@@ -68,10 +68,10 @@ text-align: left;
 }
 
 table.viewpdt tr:hover td {
-    background: #ccffcc;
+   // background: #ccffcc;
 }
 table.viewpdt tr:hover th {
-    background: #aaff7f;
+  //  background: #aaff7f;
 }
 
 table.viewpdt tr td {

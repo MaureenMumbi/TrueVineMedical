@@ -90,7 +90,7 @@
              
                   $(function() {
         $( "#date1" ).datepicker({
-                                dateFormat: "dd/mm/yy",
+                                dateFormat: "yy/mm/dd",
                                 changeMonth: true,
                                 changeYear: true,
                                 yearRange:'1950:2027',
@@ -171,7 +171,7 @@ current_date=month+"/"+day+"/"+year;
     success:function(data){
 //        alert(data);
         document.getElementById("visitstable").innerHTML=data;
-      $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
+      $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd', maxDate: new Date()});
           
     }
 });  
@@ -197,7 +197,7 @@ current_date=month+"/"+day+"/"+year;
      success:function(data){
 //        alert(data);
          document.getElementById("visitstable").innerHTML=data;
-         $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
+         $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd',  maxDate: new Date()});
           
           }
           });  
@@ -272,7 +272,8 @@ current_date=month+"/"+day+"/"+year;
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header" style="font-family: bree serif;">Followup and Revisits</h1>
+                    <h1 class="page-header" style="font-family: bree serif;text-align: center;">Followup and Revisits   <a href="viewChildDetails.jsp" id="visitnext" class="generate1" style=" cursor:pointer;margin-left: 50px; text-transform:uppercase ; height: 38px; width:140px;text-align:center ; color:white ;background:coral; font-size: 25px;border-style:ridge ;" > Home >> </a></h1>
+                   
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

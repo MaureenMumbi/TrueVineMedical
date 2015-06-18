@@ -82,7 +82,7 @@ public class saveEditedDisposal extends HttpServlet {
             conn.rs=conn.state.executeQuery(checkuser);
             
             if(!conn.rs.next()){
-            msg=name+" 's disposal records saved Successfully";
+            msg="<h4> <font color=\"green\">"+name+" s disposal records saved Successfully </font></h4>";
             String savedata=" insert into finaldisposal (PatientID,Reason,dateofdeath,causeofdeath,town,country,userid) "
                     + "values (?,?,?,?,?,?,?)";
             
@@ -107,7 +107,7 @@ public class saveEditedDisposal extends HttpServlet {
             
             //do an update
                 
-                   msg=name+"'s disposal records updated Successfully";
+                   msg="<h4> <font color=\"green\"> "+name+"s disposal records updated Successfully </font></h4>";
                  String savedata="update finaldisposal set Reason = ?,dateofdeath = ?,causeofdeath = ? ,town = ? ,country = ? where PatientID='"+Patientid+"' ";
             
             conn.ps1=conn.connect.prepareStatement(savedata);
@@ -132,9 +132,31 @@ public class saveEditedDisposal extends HttpServlet {
             conn.ps1.close();
             conn.connect.close();
             
-            session.setAttribute("disposalmsg", msg);
-           
-            
+            session.setAttribute("disposaleditmsg", msg);
+        String index="";
+      
+      String  form[]= new String[]{};
+            form=(String[]) session.getAttribute("form");
+
+     int indexes=0;
+       
+    
+     
+     
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+            if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("manageforms.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+             }
+         
+        session.setAttribute("index",indexes);
         
             
             
@@ -142,7 +164,7 @@ public class saveEditedDisposal extends HttpServlet {
           Logger.getLogger(savedisposal.class.getName()).log(Level.SEVERE, null, ex);
       }
           
-            response.sendRedirect("editDisposal.jsp?name="+name+"&regNo="+Patientid);  
+           // response.sendRedirect("editDisposal.jsp?name="+name+"&regNo="+Patientid);  
         
     }
 

@@ -75,7 +75,7 @@
 	  <script>	
                 $(function() {
         $( ".date" ).datepicker({
-                                dateFormat: "dd/mm/yy",
+                                dateFormat: "yy/mm/dd",
                                 changeMonth: true,
                                 changeYear: true,
                                 yearRange:'1950:2027',

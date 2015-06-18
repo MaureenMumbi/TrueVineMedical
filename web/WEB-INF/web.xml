@@ -116,6 +116,18 @@
         <servlet-name>monthlyattendance</servlet-name>
         <servlet-class>PatientDetails.monthlyattendance</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>saveEditedInvestigations</servlet-name>
+        <servlet-class>PatientDetails.saveEditedInvestigations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editPrintForm</servlet-name>
+        <servlet-class>PatientDetails.editPrintForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommonDiagnosis</servlet-name>
+        <servlet-class>reports.CommonDiagnosis</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>updatedbpword</servlet-name>
         <url-pattern>/updatedbpword</url-pattern>
@@ -231,6 +243,18 @@
     <servlet-mapping>
         <servlet-name>monthlyattendance</servlet-name>
         <url-pattern>/monthlyattendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveEditedInvestigations</servlet-name>
+        <url-pattern>/saveEditedInvestigations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editPrintForm</servlet-name>
+        <url-pattern>/editPrintForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommonDiagnosis</servlet-name>
+        <url-pattern>/CommonDiagnosis</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

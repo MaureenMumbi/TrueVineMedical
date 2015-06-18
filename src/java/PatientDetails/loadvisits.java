@@ -125,7 +125,7 @@ public class loadvisits extends HttpServlet {
                                         }
                    else if(a==visitno+1){ 
                        
-        visitoptions+="<option  value="+a+"> Visit "+a+" (Not Attended) </option>";
+        visitoptions+="<option  value="+a+"> Visit "+a+" (New) </option>";
                                          
                                          }
       
@@ -172,7 +172,7 @@ public class loadvisits extends HttpServlet {
       
 
       if(a==Integer.parseInt(visitvalue)){ 
-        visitoptions+="<option selected value="+a+"> Visit "+a+" (Not Attended)</option>";
+        visitoptions+="<option selected value="+a+"> Visit "+a+" (New)</option>";
                                           }
       else if(a!=Integer.parseInt(visitvalue))
                                          { 
@@ -186,7 +186,7 @@ public class loadvisits extends HttpServlet {
    }
    else {
    
-    visitoptions="<option selected value='"+visitvalue+"'>visit "+visitvalue+" (Not attended)</option>";
+    visitoptions="<option selected value='"+visitvalue+"'>visit "+visitvalue+" (New Visit)</option>";
  
    }
   

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author MANUEL
  */
-public class saveinvestigations extends HttpServlet {
+public class saveEditedInvestigations extends HttpServlet {
 
    
     
@@ -85,7 +85,7 @@ String mri=request.getParameter("mri");
     //have a session containing the patientid
     
     String invinsert="insert into investigations (patientID,urinalysis,stoolmicroscopy,stoolHPylori,malaria,RBS,HTotalWBCCount,HDifferential,HHb,HPeripheral,HInclusions,inclusiondesc,LFTs,UreaNelectrolytes,ThyroidProfile,CXR,OtherXray,ultrasound,ctscanbrain,ctscanother,MRI,userid,date)"
-            + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     
 conn.ps1=conn.connect.prepareStatement(invinsert);
@@ -124,8 +124,33 @@ conn.ps1=conn.connect.prepareStatement(invinsert);
     PrintWriter out = response.getWriter();
     
     
-    response.sendRedirect("viewChildDetails.jsp");
-    session.setAttribute("investdatasaved","<h4><font color=\"green\">investigations data saved succesfully</font></h4>");
+   // response.sendRedirect("viewChildDetails.jsp");
+    
+    
+    session.setAttribute("datasaved","investigations data saved succesfully");
+      String index="";
+      
+      String  form[]= new String[]{};
+            form=(String[]) session.getAttribute("form");
+
+     int indexes=0;
+       
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("manageforms.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);
+    
     
     try {
         

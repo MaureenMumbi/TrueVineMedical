@@ -74,7 +74,7 @@ public class editTreatment extends HttpServlet {
                 
                 table+="<tr><td style=\"text-align: left;\">Patients Name:</td><td> <input type=\"hidden\" name=\"reg\" value=\""+patientid+"\"><b>"+pname+"</b></td></tr>  ";
                 table+="  <tr><td  style=\"text-align: left;\">Age:</td><td><input type=\"hidden\" name=\"name\" value=\""+pname+"\"><input type=\"hidden\" name=\"age\" value=\""+age+"\">"+age+"</td></tr>";
-                table+="  <tr><td style=\"text-align: left;\">Date of Entry:</td><td><input type=\"text\" required readonly name=\"date1\" value=\""+conn.rs.getString("treatmentdate")+"\" style=\"height:30px;width:240px;\" id=\"date1\" required/></td></tr>" +
+                table+="  <tr><td style=\"text-align: left;\">Date of Treatment:</td><td><input type=\"text\" required readonly name=\"date1\" value=\""+conn.rs.getString("treatmentdate")+"\" style=\"height:30px;width:240px;\" id=\"date1\" required/></td></tr>" +
 "  <tr><td style=\"text-align: left;\">Treatment:</td><td>  <textarea  required name=\"treatment\" id=\"treatment\" required cols=\"40\" rows=\"4\"> "+conn.rs.getString("treatment")+"</textarea></td></tr>\n" +
 "  <tr><td style=\"text-align: left;\">Prescription :</td><td><textarea name=\"prescription\" id=\"prescription\" required cols=\"40\" rows=\"2\"> "+conn.rs.getString("prescription")+"</textarea></td></tr>";
                 table+="<tr><th colspan=\"2\" style=\"text-align: center;\">Refferal Section</th></tr>";
@@ -88,7 +88,7 @@ public class editTreatment extends HttpServlet {
             
             }
             
-            System.out.println("_______");
+            System.out.println("_______"+table);
             
             PrintWriter out = response.getWriter();
             try {

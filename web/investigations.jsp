@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
       <link rel="shortcut icon" href="images/truevine.png"/>
-    <title>Truevine Medical System</title>
+    <title>Investigations</title>
  <script src="js/jquery-1.7.2.js"></script>
     <script src="sbfiles/js/sb-admin-2.js"></script>
 <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
@@ -63,7 +63,7 @@
 	 <script>	
                 $(function() {
         $( ".date" ).datepicker({
-                                dateFormat: "dd/mm/yy",
+                                dateFormat: "yy/mm/dd",
                                 changeMonth: true,
                                 changeYear: true,
                                 yearRange:'1950:2036',
@@ -149,7 +149,7 @@
 <tr><td>
 <!-- Smart Wizard -->
         <!--<h2>Example: Basic Wizard</h2>-->
-                          <form method="post" action="updateinvestigations" class="form contact-form">
+                          <form method="post" action="saveinvestigations" class="form contact-form">
   		<div id="wizard" class="swMain" style="width:1200px;">
 
   <ul> 

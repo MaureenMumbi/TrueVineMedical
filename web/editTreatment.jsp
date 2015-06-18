@@ -74,7 +74,7 @@
 <!--       <script src="js/DICHelp.js"></script>-->
 	 <script>	
                 $(function() {
-       $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
+       $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd'});
                 
             
                     
@@ -99,7 +99,7 @@
     success:function(data){
 //        alert(data);
         document.getElementById("treatmenttable").innerHTML=data;
-      //$("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'dd/mm/yy'});
+      //$("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd'});
        
     
        document.getElementById("submit").value="SAVE AND PRINT";
@@ -229,7 +229,7 @@
                    
 		
                     
-               <form action="PrintForm" method="post">
+               <form action="editPrintForm" method="post">
                                
 <table style="margin-left: 90px; width:1000px;" id="treatmenttable" class="viewpdt">
 

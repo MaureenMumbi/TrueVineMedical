@@ -41,7 +41,7 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.STMerge;
  *
  * @author MANUEL
  */
-public class PrintForm extends HttpServlet {
+public class editPrintForm extends HttpServlet {
 
     
     HttpSession session=null;
@@ -237,10 +237,10 @@ public class PrintForm extends HttpServlet {
         outstream.close();
         
        
-       FileWriter outFile = new FileWriter(finapath ,false);
-       PrintWriter out = new PrintWriter(outFile);
-       out.print(out); /**/
-       out.close(); 
+       //FileWriter outFile = new FileWriter(finapath ,false);
+      // PrintWriter out = new PrintWriter(outFile);
+       //out.print(out); /**/
+       //out.close(); 
         
         print.printform(finapath);
           //now call the print
@@ -264,10 +264,29 @@ public class PrintForm extends HttpServlet {
                 
                
             }
-            session.setAttribute("treatmentmsg", "<h4><font color=\"green\">Treatment details saved successfully</font></h4>");            
-             //String nextpage="treatment.jsp?name="+name+"&age="+age+"&regNo="+regno;
-             String nextpage="viewChildDetails.jsp";
-            response.sendRedirect(nextpage);
+            session.setAttribute("updtreatmentmsg", "<h4> <font color=\"green\"> Treatment details saved successfully </font></h4>");            
+             String index="";
+      
+      String  form[]= new String[]{};
+            form=(String[]) session.getAttribute("form");
+
+     int indexes=0;
+       
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("manageforms.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);
             
         } catch (SQLException ex) {
             Logger.getLogger(PrintForm.class.getName()).log(Level.SEVERE, null, ex);

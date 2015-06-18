@@ -72,7 +72,7 @@ boolean retval=true;
       
       
       //InputStream is = new ByteArrayInputStream(path.getBytes());
-      FileInputStream is = new FileInputStream( new File(curreceipt));
+      FileInputStream is = new FileInputStream(new File(curreceipt));
       
       flavor =  DocFlavor.INPUT_STREAM.AUTOSENSE  ;   
             //look for all printers
