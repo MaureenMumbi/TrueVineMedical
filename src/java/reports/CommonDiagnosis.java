@@ -8,6 +8,9 @@ package reports;
 import DBCONNECT.dbConnect;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,22 +25,33 @@ public class CommonDiagnosis extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        dbConnect conn= new dbConnect();
-        
-      String startdate="";
-      String enddate="";
-      
-      String selectsicknesses="select treatment, count(treatment) as diagnosis from treatment where treatmentdate between "+startdate+" and  "+enddate+" group by treatment";
-      
-        PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+            response.setContentType("text/html;charset=UTF-8");
             
-        } finally {
-            out.close();
+            dbConnect conn= new dbConnect();
+            
+            String startdate="2015/05/01";
+            String enddate="2015/06/30";
+            
+            String selectsicknesses="select treatment, count(treatment) as diagnosis from treatment where treatmentdate between '"+startdate+"' and  '"+enddate+"' group by treatment";
+            
+            
+            System.out.println(""+selectsicknesses);
+            conn.rs=conn.state.executeQuery(selectsicknesses);
+            
+            while(conn.rs.next()){
+                
+            }
+            PrintWriter out = response.getWriter();
+            try {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                
+            } finally {
+                out.close();
+            }
+        }   catch (SQLException ex) {
+            Logger.getLogger(CommonDiagnosis.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

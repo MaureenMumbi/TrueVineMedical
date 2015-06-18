@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 
 /**
  *
@@ -117,11 +118,41 @@ String invinsert="insert into followup (patientID,revisitDate,findings,recommend
           session.setAttribute("visitsmsg","<h3 style='color:green'>Visits Data for Patient id "+patientid+" has been saved succesfully !!</h3>");  
          }
             
+            JSONObject obj= new JSONObject();
+            
+            obj.put("msg", session.getAttribute("visitsmsg"));
+            
+            String next="";
+            
+             String index="";
+             String  form[]= new String[]{};
+             if(session.getAttribute("form")!=null){
+            form=(String[]) session.getAttribute("form");
+
+         int indexes=0;
+         session = request.getSession();
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+            next="viewChildDetails.jsp";}
+
+         else{
+              next=form[indexes];
+         }
+         
+        session.setAttribute("index",indexes);}
+            
+            obj.put("nxt", next);
             
             
             PrintWriter out = response.getWriter();
             try {
-                out.println(session.getAttribute("visitsmsg"));
+                out.println(obj);
                 
             } finally {
                 out.close();

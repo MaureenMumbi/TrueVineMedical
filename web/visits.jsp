@@ -224,9 +224,9 @@ current_date=month+"/"+day+"/"+year;
     $.ajax({
     url:"SaveVisits?followupid="+folowup+"&reg="+reg+"&date1="+date1+"&finding="+finding+"&recomendation="+recom+"&Visitno="+visitno,
     type:'post',
-    dataType:'html',
+    dataType:'json',
     success:function(data){
-        var n = noty({text:data,
+        var n = noty({text:data.msg,
                         layout: 'center',
                         type: 'Success',
                         timeout: 3800,
@@ -235,6 +235,14 @@ current_date=month+"/"+day+"/"+year;
         close: {height: 'toggle'}, // jQuery animate function property object
         easing: 'swing', // easing
         speed: 500 // opening & closing animation speed
+    },callback: {
+        onShow: function() {},
+        afterShow: function() {
+         window.open(data.nxt,"_self")   
+        },
+        onClose: function() {},
+        afterClose: function() {},
+        onCloseClick: function() {},
     }            
         }); 
          

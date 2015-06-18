@@ -30,7 +30,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="sbfiles/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="images/truevine.png"/>
     <!-- MetisMenu CSS -->
     <link href="sbfiles/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -136,6 +136,14 @@
                     
             
             }
+            
+            
+            
+      
+                    
+             
+            
+            
   
   </script>
   <script type="text/javascript" src="js/noty/jquery.noty.js"></script>
@@ -181,7 +189,7 @@
              <%if (session.getAttribute("patientadded") != null) { %>
                                 <script type="text/javascript"> 
                     
-                    var n = noty({text: '<%=session.getAttribute("patientadded")%>',
+                    var n = noty({text: '<%=session.getAttribute("patientadded")%> . Click here to close',
                         layout: 'center',
                         type: 'Success',
  
@@ -192,6 +200,55 @@
                             }
 
                         %> 
+                        
+                        
+                
+                         <%if (session.getAttribute("investdatasaved") != null) { %>
+                                <script type="text/javascript"> 
+                    
+                    var n = noty({text: '<%=session.getAttribute("investdatasaved")%>. Click here to close',
+                        layout: 'center',
+                        type: 'Success', 
+                         timeout: 1800});
+                    
+                </script> <%
+                session.removeAttribute("investdatasaved");
+                            }
+
+                        %> 
+                        
+                        
+                              <%if (session.getAttribute("treatmentmsg") != null) { %>
+                                <script type="text/javascript"> 
+                    
+                    var n = noty({text: '<%=session.getAttribute("treatmentmsg")%>. Click here to close',
+                        layout: 'center',
+                        type: 'Success', 
+                         timeout: 1800});
+                    
+                </script> <%
+                session.removeAttribute("treatmentmsg");
+                            }
+
+                        %> 
+                        
+                        
+                        
+                             <%if (session.getAttribute("disposalmsg") != null) { %>
+                                <script type="text/javascript"> 
+                    
+                    var n = noty({text: '<%=session.getAttribute("disposalmsg")%>. Click here to close',
+                        layout: 'center',
+                        type: 'Success', 
+                         timeout: 1800});
+                    
+                </script> <%
+                session.removeAttribute("disposalmsg");
+                            }
+
+                        %> 
+                        
+                        
                             <form method="post" action="storeParameters">
               <table id="example" class="display">
 		            <thead>
@@ -210,7 +267,7 @@
                          <% 
                          String query = "select * from basicdetails";
                                      conn.rs = conn.state.executeQuery(query); 
-
+int count=1;
                                         while(conn.rs.next())
                                         {
                                      String child= conn.rs.getString("FName")+" "+conn.rs.getString("SName")+" "+ conn.rs.getString("LName");
@@ -227,7 +284,7 @@
                                     <td><%= conn.rs.getString("Age")%></td>
                                     <td>
                                   <!--<select  onchange="opennewpage(this);"  id="pages" multiple>-->
-                                    <select id="pages" name="forms" style='height:130px;width:100%;' multiple>    
+                                    <select onclick="enablesubmit('<%=count%>');" id="pages<%=count%>" name="forms" style='height:130px;width:100%;' multiple>    
                                             <option value="">Select Page</option>
                                              <% if(session.getAttribute("level")!=null){
                     if(session.getAttribute("level").toString().equals("Receptionist")){%>
@@ -243,15 +300,17 @@
              <option value="Disposal.jsp?name=<%=child%>&regNo=<%=conn.rs.getString("PatientID")%>">Disposal</option>
               <%}}%>
                                         </select></td>
-                                         <td> <input type="submit" value="VIEW" name="submit"> </td>
+                                         <td> <input type="submit" disabled id="submit<%=count%>" value="NEXT" name="submit"> </td>
                                     
                             </tr>
                                       <%
+                                             count++;
                                                                            }
 %>
                                 
 		            </tbody>
 		        </table>
+<input type="hidden" id="lastselected" > 
                             </form>
 
     </div>
@@ -274,6 +333,54 @@
     <!-- Custom Theme JavaScript -->
     <script src="sbfiles/js/sb-admin-2.js"></script>
 
+    <script>
+        
+    function enablesubmit(id){
+          var no=id;      
+               if (!$("#pages"+id+" option:selected").length) {
+   
+    document.getElementById("submit"+id).disabled=true;
+  }
+  else {
+   document.getElementById("submit"+id).disabled=false;    
+           
+            
+            
+  }
+ 
+       var prevno=document.getElementById("lastselected").value;   
+          //   alert(document.getElementById("lastselected").value+"__"+id);
+  //check for the selected element
+if(document.getElementById("lastselected").value!==id){
+      //unselect the previous if its not blank
+  if(document.getElementById("lastselected").value!==""){
+$("#pages"+prevno).attr("selected",false);
+
+for (var i=0; i<document.getElementById("pages"+prevno).options.length; i++)
+{
+if (document.getElementById("pages"+prevno).options[i].selected == true)
+{
+document.getElementById("pages"+prevno).options[i].selected = false;
+
+}
+} 
+//also disable button
+document.getElementById("submit"+prevno).disabled=true;          
+      }
+      else {
+    
+      }
+      document.getElementById("lastselected").value=id;  
+  }
+     
+  
+}
+  
+  
+        
+        
+    </script>
+    
 </body>
 
 </html>

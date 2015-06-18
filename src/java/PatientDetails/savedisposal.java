@@ -82,7 +82,7 @@ public class savedisposal extends HttpServlet {
             conn.rs=conn.state.executeQuery(checkuser);
             
             if(!conn.rs.next()){
-            msg=name+" 's disposal records saved Successfully";
+            msg="<h4> <font color=\"green\">"+name+" s disposal records saved Successfully</font>";
             String savedata=" insert into finaldisposal (PatientID,Reason,dateofdeath,causeofdeath,town,country,userid) "
                     + "values (?,?,?,?,?,?,?)";
             
@@ -107,7 +107,7 @@ public class savedisposal extends HttpServlet {
             
             //do an update
                 
-                   msg=name+"'s disposal records updated Successfully";
+                   msg="<h4> font color=\"green\""+name+"s disposal records updated Successfully</h4>";
                  String savedata="update finaldisposal set Reason = ?,dateofdeath = ?,causeofdeath = ? ,town = ? ,country = ? where PatientID='"+Patientid+"' ";
             
             conn.ps1=conn.connect.prepareStatement(savedata);
@@ -142,7 +142,28 @@ public class savedisposal extends HttpServlet {
           Logger.getLogger(savedisposal.class.getName()).log(Level.SEVERE, null, ex);
       }
           
-            response.sendRedirect("Disposal.jsp?name="+name+"&regNo="+Patientid);  
+           String index="";
+             String  form[]= new String[]{};
+             if(session.getAttribute("form")!=null){
+            form=(String[]) session.getAttribute("form");
+
+         int indexes=0;
+         session = request.getSession();
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("viewChildDetails.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);}
         
     }
 

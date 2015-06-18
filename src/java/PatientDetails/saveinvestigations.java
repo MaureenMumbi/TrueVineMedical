@@ -124,8 +124,32 @@ conn.ps1=conn.connect.prepareStatement(invinsert);
     PrintWriter out = response.getWriter();
     
     
-    response.sendRedirect("viewChildDetails.jsp");
+   
     session.setAttribute("investdatasaved","<h4><font color=\"green\">investigations data saved succesfully</font></h4>");
+   
+    String index="";
+             String  form[]= new String[]{};
+             if(session.getAttribute("form")!=null){
+            form=(String[]) session.getAttribute("form");
+
+         int indexes=0;
+         session = request.getSession();
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("viewChildDetails.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);}
+    
     
     try {
         

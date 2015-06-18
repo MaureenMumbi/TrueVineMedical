@@ -21,7 +21,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="sbfiles/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="images/truevine.png"/>
     <!-- MetisMenu CSS -->
     <link href="sbfiles/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 

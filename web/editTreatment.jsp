@@ -24,12 +24,14 @@
 
     <title>Treatment</title>
  <script src="js/jquery-1.7.2.js"></script>
+  <script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+ <script src="jquery-ui-1.11.4/jquery-ui.css"></script>
     <script src="sbfiles/js/sb-admin-2.js"></script>
 <!--<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>-->
-<script type="text/javascript" src="js/jquery.smartWizard.js"></script>
+<!--<script type="text/javascript" src="js/jquery.smartWizard.js"></script>-->
  
 
-<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<!--<script src="js/jquery-ui-1.10.3.custom.js"></script>-->
     <!-- Bootstrap Core CSS -->
     <link href="sbfiles/css/bootstrap.min.css" rel="stylesheet">
 
@@ -67,7 +69,7 @@
 
  <link href="js/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <!-- <script src="js/jquery-1.7.2.js"></script>-->
-<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<!--<script src="js/jquery-ui-1.10.3.custom.js"></script>-->
 
        <script src="js/datepicker.js"></script>
        <script src="js/jquery.ui.datepicker.js"></script>
@@ -106,6 +108,27 @@
         document.getElementById("isprint1").value="yes";  
         document.getElementById("isprint").checked=true;  
     
+ 
+var diseases = ["Malaria", "Pneumonia","Flu","Cold","Anaemia","Leukemia","erythema infectiosum","roseola infantum","chicken pox","Scarlet fever","Whooping cough"];
+var prescription = ["1X1", "1X2","1X3","2X1","2X2","2X3","3X1","3X2","3X3","4X1","4X2","4X3"];
+ 
+//$('#treatment').typeahead({
+//  hint: true,
+//  highlight: true,
+//  minLength: 1
+//},
+//{
+//  name: 'treatment',
+//  source: substringMatcher(diseases)
+//});
+
+    $( "#treatment" ).autocomplete({
+      source: diseases
+    });
+    $( "#prescription" ).autocomplete({
+      source: prescription
+    });
+
   
     }
 });  

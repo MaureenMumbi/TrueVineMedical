@@ -36,7 +36,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="sbfiles/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="images/truevine.png"/>
     <!-- MetisMenu CSS -->
     <link href="sbfiles/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -238,7 +238,9 @@ function openwindow(){
 		            </thead>
 		            <tbody>
                           <% String getTreatment = "select investigations.date as invdate,treatment.PatientID as PatientID , treatment ,Prescription,treatmentdate from treatment left join investigations on investigations.patientID=treatment.PatientID and treatment.treatmentdate=investigations.date ";
-                                     conn.rs2 = conn.state1.executeQuery(getTreatment);
+                                    
+                          
+                          conn.rs2 = conn.state1.executeQuery(getTreatment);
                                      while(conn.rs2.next()){
 
                             a++;
@@ -264,7 +266,7 @@ function openwindow(){
                                 
                               
                                     <td>
-                                        <select id="pages<%=a%>" name="forms" style='height:160px;width:100%;' multiple>
+                                        <select onclick="enablesubmit('<%=a%>');" id="pages<%=a%>" name="forms" style='height:160px;width:100%;' multiple>
                                             
                                             
                                             <option value="ViewBasicDetails.jsp">Child Basic Details</option>
@@ -294,7 +296,7 @@ function openwindow(){
                                         </select></td>
                             <input type="hidden" name="Regno" value="<%= conn.rs.getString("RegNo")%>">   
                             <input type="hidden" name="PatientID" value="<%= conn.rs.getString("PatientID")%>">   
-                            <td> <input type="submit" value="Edit" name="submit"> </td>
+                            <td> <input type="submit" disabled value="Edit" id="submit<%=a%>" name="submit"> </td>
                             </tr>
                                       <%
                                                                            }
@@ -303,7 +305,7 @@ function openwindow(){
                               		         
 </tbody>
 		        </table>
- 
+              <input type="hidden" id="lastselected" > 
             </form>
     </div>
     <!-- /#wrapper -->
@@ -325,7 +327,51 @@ function openwindow(){
     <!-- Custom Theme JavaScript -->
     <script src="sbfiles/js/sb-admin-2.js"></script>
 
+    <script>
+        
+        
+              function enablesubmit(id){
+          var no=id;      
+               if (!$("#pages"+id+" option:selected").length) {
+   
+    document.getElementById("submit"+id).disabled=true;
+  }
+  else {
+   document.getElementById("submit"+id).disabled=false;    
+           
+            
+            
+  }
+ 
+       var prevno=document.getElementById("lastselected").value;   
+          //   alert(document.getElementById("lastselected").value+"__"+id);
+  //check for the selected element
+if(document.getElementById("lastselected").value!==id){
+      //unselect the previous if its not blank
+  if(document.getElementById("lastselected").value!==""){
+$("#pages"+prevno).attr("selected",false);
+
+for (var i=0; i<document.getElementById("pages"+prevno).options.length; i++)
+{
+if (document.getElementById("pages"+prevno).options[i].selected == true)
+{
+document.getElementById("pages"+prevno).options[i].selected = false;
+
+}
+} 
+//also disable button
+document.getElementById("submit"+prevno).disabled=true;          
+      }
+      else {
     
+      }
+      document.getElementById("lastselected").value=id;  
+  }
+     
+  
+}
+  
+    </script>
     
     
 </body>
