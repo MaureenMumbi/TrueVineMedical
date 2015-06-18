@@ -74,6 +74,7 @@ public class generalexamination extends HttpServlet {
                String rashes="";
                String rashesdescription="";
                String rasheslocation="";
+               String dateRegistered="";
         rowcount=16;
           session = request.getSession();
           dbConnect conn = new dbConnect();
@@ -88,7 +89,9 @@ public class generalexamination extends HttpServlet {
            }
                 if(session.getAttribute("username")!=null){
            Userid= (String) session.getAttribute("username");}
-         
+         if(!request.getParameter("dateRegistered").equals("") && request.getParameter("dateRegistered")!=null){
+          dateRegistered=request.getParameter("dateRegistered");
+          }
          if(!PatientID.equals("") && PatientID!=null){
          birthplace=request.getParameter("birthplace");
          hospitalname=request.getParameter("hospitalname");
@@ -124,7 +127,7 @@ public class generalexamination extends HttpServlet {
          }
          if(!PatientID.equals("") && PatientID!=null){
         
-         String inserthistory="insert into childbirthhistory set PatientID=?,BirthPlace=?,HospitalName=?,DeliveryMode=?,"
+         String inserthistory="insert into childbirthhistory set PatientID=?,dateRegistered=?, BirthPlace=?,HospitalName=?,DeliveryMode=?,"
                  + "BirthWeight=?,BirthNo=?,SiblingDeath=?,DeathCause=?, DeathAge=?,userid=?";
          
          
@@ -135,15 +138,16 @@ public class generalexamination extends HttpServlet {
     //patientID,urinalysis,stoolmicroscopy,stoolHPylori,
 //malaria,RBS,HTotalWBCCount,HDifferential,HHb,HPeripheral,HInclusions,
  conn.ps.setString(1, PatientID);   
- conn.ps.setString(2, birthplace); 
- conn.ps.setString(3, hospitalname); 
- conn.ps.setString(4, deliverymode); 
- conn.ps.setString(5 ,birthweight); 
- conn.ps.setString(6,birthno); 
- conn.ps.setString(7,siblingdeath); 
- conn.ps.setString(8,deathcause); 
- conn.ps.setString(9,deathage); 
- conn.ps.setString(10,Userid); 
+ conn.ps.setString(2, dateRegistered); 
+ conn.ps.setString(3, birthplace); 
+ conn.ps.setString(4, hospitalname); 
+ conn.ps.setString(5, deliverymode); 
+ conn.ps.setString(6 ,birthweight); 
+ conn.ps.setString(7,birthno); 
+ conn.ps.setString(8,siblingdeath); 
+ conn.ps.setString(9,deathcause); 
+ conn.ps.setString(10,deathage); 
+ conn.ps.setString(11,Userid); 
  
  conn.ps.executeUpdate();
           System.out.println(inserthistory);
@@ -235,7 +239,32 @@ public class generalexamination extends HttpServlet {
            
            
         }
+         
+          String index="";
+             String  form[]= new String[]{};
+             if(session.getAttribute("form")!=null){
+            form=(String[]) session.getAttribute("form");
+
+         int indexes=0;
+         session = request.getSession();
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("viewChildDetails.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);}
+             else{
         response.sendRedirect("systemicexamination.jsp");
+             }
         }finally {            
             out.close();
         }

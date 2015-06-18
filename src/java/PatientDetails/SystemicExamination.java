@@ -69,6 +69,7 @@ public class SystemicExamination extends HttpServlet {
            String tonedescription="";
            String reflexes="";
            String reflexdescription="";
+           String dateRegistered="";
      HttpSession session;
      String PatientID="";
      String Userid="";
@@ -85,7 +86,9 @@ public class SystemicExamination extends HttpServlet {
                 if(session.getAttribute("username")!=null){
            Userid= (String) session.getAttribute("username");}
           
-           
+           if(!request.getParameter("dateRegistered").equals("") && request.getParameter("dateRegistered")!=null){
+          dateRegistered=request.getParameter("dateRegistered");
+          }
      airentryleft=request.getParameter("airentryleft");
              airentryright=request.getParameter("airentryleft");
              ralesleft=request.getParameter("ralesleft");
@@ -120,7 +123,7 @@ public class SystemicExamination extends HttpServlet {
            reflexdescription=request.getParameter("reflexdescription");
                     
              if(!PatientID.equals("") && PatientID!=null){
-            String insertrespiratory="insert into respiratory set Patientid=?,AirEntryLeftLung=?,"
+            String insertrespiratory="insert into respiratory set Patientid=?,dateRegistered=?,AirEntryLeftLung=?,"
                     + "AirEntryRightLung=?,RalesLeft=?,RalesRight=?,"
                     + "RhonchiLeft=?, RhonchiRight=?,userid=?";     
             System.out.println(insertrespiratory) ;    
@@ -130,13 +133,14 @@ public class SystemicExamination extends HttpServlet {
             conn.ps2=conn.connect.prepareStatement(insertrespiratory);
     
  conn.ps2.setString(1, PatientID);   
- conn.ps2.setString(2, airentryleft); 
- conn.ps2.setString(3, airentryright); 
- conn.ps2.setString(4, ralesleft); 
- conn.ps2.setString(5 ,ralesright); 
- conn.ps2.setString(6,rhonchileft); 
- conn.ps2.setString(7,rhonchiright);
- conn.ps2.setString(8,Userid); 
+ conn.ps2.setString(2, dateRegistered); 
+ conn.ps2.setString(3, airentryleft); 
+ conn.ps2.setString(4, airentryright); 
+ conn.ps2.setString(5, ralesleft); 
+ conn.ps2.setString(6 ,ralesright); 
+ conn.ps2.setString(7,rhonchileft); 
+ conn.ps2.setString(8,rhonchiright);
+ conn.ps2.setString(9,Userid); 
  
  conn.ps2.executeUpdate();
             
@@ -229,8 +233,32 @@ conn.ps.setString(2, distention);
                
                
              }
-            
-            response.sendRedirect("investigations.jsp");
+             String index="";
+             String  form[]= new String[]{};
+             if(session.getAttribute("form")!=null){
+            form=(String[]) session.getAttribute("form");
+
+         int indexes=0;
+         session = request.getSession();
+         if(session.getAttribute("index")!=null){
+       index=session.getAttribute("index").toString();
+       
+       indexes=Integer.parseInt(index)+1;
+         }
+      System.out.println("length"+form.length);
+      System.out.println("lengths"+indexes);
+         if(Integer.parseInt(index)==form.length-1){   
+             response.sendRedirect("viewChildDetails.jsp");}
+
+         else{
+              response.sendRedirect(form[indexes]);
+         }
+         
+        session.setAttribute("index",indexes);}
+             else{
+      response.sendRedirect("investigations.jsp");
+             }
+         
         } finally {            
             out.close();
         }
