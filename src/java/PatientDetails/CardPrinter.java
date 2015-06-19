@@ -10,6 +10,7 @@ package PatientDetails;
  * @author MANUEL
  */
 import java.awt.print.PrinterJob;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +50,10 @@ public class CardPrinter {
 
             // Open the image file 
             String testData = "Hello World !\f";
-            FileInputStream is = new FileInputStream("C:\\TrueVineMedical\\TreatmentForms\\a.txt");
+            
+            
+            FileInputStream is = new FileInputStream("C:\\TrueVineMedical\\TreatmentForms\\a.pdf");
+           //  InputStream is = new FileInputStream("C:\\TrueVineMedical\\a.pdf");
             //InputStream is = new ByteArrayInputStream(testData.getBytes());
             DocFlavor flavor =  DocFlavor.INPUT_STREAM.AUTOSENSE   ;
 
@@ -59,7 +63,7 @@ public class CardPrinter {
 
             // Create the print job
             DocPrintJob job = service.createPrintJob();
-            Doc doc= new SimpleDoc(is, flavor, null);
+            Doc doc= new SimpleDoc(is, null, null);
 
             // Monitor print job events; for the implementation of PrintJobWatcher,
             PrintJobWatcher pjDone = new PrintJobWatcher(job);

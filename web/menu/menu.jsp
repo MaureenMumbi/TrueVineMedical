@@ -67,11 +67,26 @@
                             <a href="childdetails.jsp"><i class="fa fa-stethoscope fa-fw"></i> Child Basic Details</a>
                         </li>
                        
+                       
+                        
+                         
+           <li class="has-sub ">
+               <a href="#">
+               <i class="fa fa-files-o fa-fw"></i>
+               <span class="title">Reports</span>
+               <span class="arrow "></span>
+               </a>
+               <ul class="sub">
+              <li ><a href="monthlyattendance.jsp"></i>Monthly Attendance</a></li>
+              <li ><a href="commondiagnosisreport.jsp"></i>Common Diagnosis</a></li>
+       
+           
+               </ul>
+            </li>
+                        
+                        
                         <li>
-                            <a href="forms.html"><i class="fa fa-files-o fa-fw"></i> Reports</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-calendar fa-fw"></i> Bookings</a>
+                            <a href="#"><i class="fa fa-calendar fa-fw"></i> Bookings</a>
                         </li>
                         <li>
                             <a href="viewChildDetails.jsp"><i class="fa fa-book fa-fw"></i> Next Patient</a>

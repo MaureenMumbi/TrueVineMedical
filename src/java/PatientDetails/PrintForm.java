@@ -5,13 +5,9 @@
 package PatientDetails;
 
 import DBCONNECT.dbConnect;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -26,16 +22,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-import org.apache.poi.xwpf.usermodel.UnderlinePatterns;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
-import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTString;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STMerge;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+
+
+
 
 /**
  *
@@ -153,71 +160,14 @@ public class PrintForm extends HttpServlet {
             
            // XWPFDocument document = new XWPFDocument();
             if(isprint.equalsIgnoreCase("yes")){
-            
-            XWPFDocument document = new XWPFDocument();
-            
-            //XWPFTestDataSamples.openSampleDocument("TestDocument.docx");
-                String allpath = getServletContext().getRealPath("/card.docx");
                 
-                System.out.println("__PATH OF CARD::"+allpath);
-            FileOutputStream outStream = null;
-            
-            //create the
-           
-            String tableheaders[]={"Patients Name","Patients Id","Age","Date of Treatment","Treatment","Prescription","Referral"};
-            String tablevals[]={name,regno,age,date,treatment,prescription,refferall};
-            
-        XWPFTable tbl = document.createTable(1,2);
-  
-        //XWPFTableRow rw = tbl.createRow();
-        //rw.createCell().setText("TRUEVINE CHILD HEALTH CENTRE");
-        
-        CTTblPr tblPr = tbl.getCTTbl().getTblPr();
-        CTString styleStr = tblPr.addNewTblStyle();
-        styleStr.setVal("StyledTable");
-        
-            
-            XWPFParagraph paragraphFour = tbl.getRow(0).getCell(0).getParagraphs().get(0);
-            paragraphFour.setAlignment(ParagraphAlignment.CENTER);
-            XWPFRun paragraphFourRunOne = paragraphFour.createRun();
-            paragraphFourRunOne.setBold(true);
-           // paragraphFourRunOne.setUnderline(UnderlinePatterns.SINGLE);
-            paragraphFourRunOne.setFontSize(15);
-            paragraphFourRunOne.setFontFamily("Cambria");
-            paragraphFourRunOne.setColor("007000");
-            paragraphFourRunOne.setText("TRUEVINE CHILD HEALTH CENTRE");         
-            
-            //mergeCellsHorrizontally(tbl, 0, 0, 0);
-           
-             spanCellsAcrossRow(tbl, 0, 0, 2);
-                XWPFTable tbl1 = document.createTable(7,2);
-            
-            
-                //create a looped table
-                          for (int a = 0; a < tableheaders.length; a++) {
-
-                XWPFParagraph paragraphOne = tbl1.getRow(a).getCell(0).getParagraphs().get(0);
-                paragraphOne.setAlignment(ParagraphAlignment.LEFT);
-                //Print the names
-                XWPFRun paragraphOneRunOne = paragraphOne.createRun();
-                paragraphOneRunOne.setFontSize(12);
-                paragraphOneRunOne.setFontFamily("Cambria");
-                paragraphOneRunOne.setBold(true);
-                paragraphOneRunOne.addBreak();
-                paragraphOneRunOne.setText(tableheaders[a]);
-            //second column
-
-                XWPFParagraph paragraphOne1 = tbl1.getRow(a).getCell(1).getParagraphs().get(0);
-                paragraphOne1.setAlignment(ParagraphAlignment.LEFT);
-                XWPFRun paragraphOneRunOne1 = paragraphOne1.createRun();
-                paragraphOneRunOne1.setFontSize(12);
-                paragraphOneRunOne1.setItalic(true);
-                paragraphOneRunOne1.setFontFamily("Cambria");
-               
-                // paragraphOneRunOne1.addBreak();
-                paragraphOneRunOne1.setText(tablevals[a]);
-
-            }
+                              
+                
+                
+                //------------------------------PDF ENDS HERE-------
+       
+           String tablevals[]={name,regno,age,date,treatment,prescription,refferall};
+         
 
            String pt = getServletContext().getRealPath("db.jsp");                  
          String mydrive = pt.substring(0, 1);
@@ -225,22 +175,33 @@ public class PrintForm extends HttpServlet {
      String formpath=mydrive+":\\TrueVineMedical\\TreatmentForms"; 
        
      new File(formpath).mkdirs();
-       String finapath=  formpath+"\\"+name.replace(" ","_") + date.replace("-","_") + ".docx";                 
+       String finapath=  formpath+"\\"+name.replace(" ","_") + date.replace("-","_") + ".pdf";                 
         
-//             FileWriter outFile = new FileWriter(finapath ,false);
-//       PrintWriter out = new PrintWriter(outFile);
-//       out.print(document);
-//       out.close();   
-       
-       FileOutputStream outstream = new FileOutputStream(finapath);
-        document.write(outstream);
-        outstream.close();
+
+        
+        
+     
+        
+                try {
+                    //----------------------------------------------------------
+    
+                    createPdf(finapath,tablevals);
+                    
+                } catch (DocumentException ex) {
+                    Logger.getLogger(PrintForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+                
+                
+                
+        
+        
+        
+        
         
        
-       FileWriter outFile = new FileWriter(finapath ,false);
-       PrintWriter out = new PrintWriter(outFile);
-       out.print(out); /**/
-       out.close(); 
         
         print.printform(finapath);
           //now call the print
@@ -333,15 +294,66 @@ public class PrintForm extends HttpServlet {
     }// </editor-fold>
     
     
-   private void spanCellsAcrossRow(XWPFTable table, int rowNum, int colNum, int span) {
-    XWPFTableCell  cell = table.getRow(rowNum).getCell(colNum);
-    //cell.getCTTc().getTcPr().addNewGridSpan();
-    if (cell.getCTTc().getTcPr() == null) cell.getCTTc().addNewTcPr();
-if (cell.getCTTc().getTcPr().getGridSpan() == null) cell.getCTTc().getTcPr().addNewGridSpan();
 
-    cell.getCTTc().getTcPr().getGridSpan().setVal(BigInteger.valueOf((long)span));
-}
- 
+   
+   
+   
+   
+    public void createPdf(String filename,String [] Tablevalue)
+        throws IOException, DocumentException {
+    	// step 1
+        Document document = new Document();
+        // step 2
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        // step 3
+        document.open();
+        // step 4
+        document.add(createFirstTable(Tablevalue));
+        // step 5
+        document.close();
+    }
+   
+   
+     public static PdfPTable createFirstTable(String [] tablevalues) {
+         
+ String tableheaders[]={"Patients Name","Patients Id","Age","Date of Treatment","Treatment","Prescription","Referral"};
+           
+     
+      
+        Font fontbold = FontFactory.getFont("Times-Roman", 14, Font.BOLD);
+        fontbold.setColor(255,0,0);
+    
+        Font fontbolds = FontFactory.getFont("Times-Roman", 13, Font.BOLD);
+         fontbolds.setColor(255,0,0);
+        Font fontboldsl = FontFactory.getFont("Times-Roman", 11, Font.BOLD);
+        //document.add(new Paragraph("Times-Roman, Bold", fontbold));
+    	// a table with three columns
+        PdfPTable table = new PdfPTable(2);
+        
+        // the cell object
+        PdfPCell cell;
+        // we add a cell with colspan 3
+        cell = new PdfPCell(new Phrase("TRUEVINE CHILD HEALTH CENTRE ",fontbold));
+        cell.setColspan(2);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        // now we add a cell with rowspan 2
+        cell = new PdfPCell(new Phrase("Patient's Treatment Card",fontbolds));
+        cell.setColspan(2);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
+        
+        // we add the four remaining cells with addCell()
+        for( int a=0;a<tableheaders.length;a++){
+        cell = new PdfPCell(new Phrase(tableheaders[a],fontboldsl));
+     
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        table.addCell(cell);
+    
+        table.addCell(tablevalues[a]);
+        }
+        return table;
+    }
     
     
 }

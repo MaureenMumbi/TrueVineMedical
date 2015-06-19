@@ -82,7 +82,8 @@ public class loadinvestigations extends HttpServlet {
 "                                            <table style=\"margin-left: 150px; width:1000px;\" id=\"invtable1\" class=\"viewpdt\">\n" +
 "                                                <td colspan=\"1\">Name:</td>\n" +
 "                                                <td><b>"+name+"</b><input type=\"hidden\" required  value=\"Search..\"  readonly style=\" cursor:pointer;margin-left: 40px; text-transform:uppercase ; height: 18px; width:100px;text-align:center ; color:white ;background:coral; border-style:ridge ;\" onclick=\"getAtoFDetails();\"/> </td>\n" +
-"                                                <input type=\"hidden\" name=\"patientid\" value=\""+conn.rs.getString("patientID")+"\"/>" +
+"          <input type=\"hidden\" name=\"name\" value=\""+name+"\"/>                                      "
+                        + "<input type=\"hidden\" name=\"patientid\" value=\""+conn.rs.getString("patientID")+"\"/>" +
 "                                                <tr>\n" +
 "                                                    <td style=\"text-align:left ;\">Date: </td><td><input type='text' value=\""+conn.rs.getString("date")+"\" readonly name='invdate' class='form-control date' style=' width: 160px;height:35px;'  ><td></td>\n" +
 "                                                </tr>\n" +
