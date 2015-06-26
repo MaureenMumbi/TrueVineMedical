@@ -46,13 +46,18 @@
 <body>
 
     <div class="container">
+          <div> </div>
+        
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
+                <div class="login-panel panel panel-default" style="width:500px;height:400px;">
                     <div class="panel-heading">
+                        <img src="images/homelogo.png" style="width:100%;">
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="height:100%;">
+                        
+                      
                         <form action="login" method="post">
                                <%
  
@@ -69,12 +74,14 @@
                 session.removeAttribute("error_login");
                             }%>
                      
-                            <fieldset>
+                            
+                            
+                            <fieldset style="height:100%;">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                    <input class="form-control" style="height:45px;" placeholder="Username" name="username" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" style="height:45px;" placeholder="Password" name="password" type="password" value="">
                                 </div>
 <!--                                <div class="checkbox">
                                     <label>

@@ -81,7 +81,8 @@
 <!--       <script src="js/DICHelp.js"></script>-->
 	 <script>	
                 $(function() {
-       $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd',maxDate: new Date()});
+       $(".date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd'});
+       $(".nextvisit").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd',maxDate: new Date()});
                 
             
                     
@@ -92,7 +93,11 @@
      $("#date1").val('');
      
  }
+         function cleardate1(){
      
+     $("#nextvisit").val('');
+     
+                               }   
     
     function printst(){
         
@@ -226,7 +231,7 @@
   
   %>
   <tr>
-      <td style="text-align: left;">Date of Treatment:</td><td><input and required type="text" readonly name="date1" value="<%=mdate%>" style="height:30px;width:240px;" id="date1" required/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
+      <td style="text-align: left;">Date of Treatment:</td><td><input and required type="text" class="nextvisit" readonly name="date1" value="<%=mdate%>" style="height:30px;width:240px;" id="date1" required/><button title='clear date field to blank' onclick="cleardate();" class="btn btn-default" type="button">
              <i class="fa fa-refresh" ></i>
 </button></td>     
   </tr>
@@ -239,6 +244,9 @@
       <td style="text-align: left;">Prescription :</td><td>  <textarea  name="prescription" placeholder="Enter prescription in this format 1X2 or 3X4" id="prescription"  cols="40" rows="2"></textarea></td>
     
  </tr>
+ <tr><td style="text-align: left;">Next Visit Date:</td><td><input  type="text"  class="date1" name="nextvisitdate" value="" style="height:30px;width:240px;" id="nextvisit" /><button title='clear date field to blank' onclick="cleardate1();" class="btn btn-default" type="button">
+<i class="fa fa-refresh" ></i></button></td></tr>
+ 
   <tr><th colspan="2" style="text-align: center;">Refferal Section</th></tr>
  <tr><td style="text-align: left;">Select An Option</td><td> <select name="refferal" title="To select various options, hold the control button and select all the options that apply. To unselect an option, Hold the control button and press the selected option" id="refferal" required style="height:120px;width:240px;" multiple>
             <option value="Not reffered">Not reffered</option>

@@ -76,8 +76,9 @@
 <!--       <script src="js/DICHelp.js"></script>-->
 	 <script>	
                 $(function() {
-       $("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd'});
-                
+       $(".date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd'});
+       $(".nextvisit").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd',maxDate: new Date()});
+                   
             
                     
                 });
@@ -88,7 +89,11 @@
      
  }
  
- 
+    function cleardate1(){
+     
+     $("#nextvisit").val('');
+     
+ }
  
   function loadeditTreatment(age,name,patientid,dat){
          
@@ -103,7 +108,9 @@
         document.getElementById("treatmenttable").innerHTML=data;
       //$("#date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2020', dateFormat: 'yy/mm/dd'});
        
-    
+     //$(".date1").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd'});
+       $(".nextvisit").datepicker({changeMonth: true, changeYear: true, yearRange: '2008:2030', dateFormat: 'yy/mm/dd'});
+         
        document.getElementById("submit").value="SAVE AND PRINT";
         document.getElementById("isprint1").value="yes";  
         document.getElementById("isprint").checked=true;  
